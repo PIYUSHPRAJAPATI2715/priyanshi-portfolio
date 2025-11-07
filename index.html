@@ -6,9 +6,9 @@
   <title>Priyanshi Gautam | Portfolio</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- AOS CSS -->
+  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <!-- EmailJS -->
@@ -19,43 +19,42 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top left, #0c0c0c, #111);
+      font-family: 'Outfit', sans-serif;
       color: #fff;
+      background: radial-gradient(circle at 30% 30%, #0b001a, #060013, #01000c);
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Animated Gradient Background */
+    /* Particle Background Animation */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: linear-gradient(45deg, #000, #191919, #0a0a0a, #000);
-      background-size: 400% 400%;
-      animation: gradientMove 16s ease infinite;
+      background: radial-gradient(circle at center, rgba(111,0,255,0.15), transparent 70%),
+                  radial-gradient(circle at 80% 20%, rgba(0,200,255,0.1), transparent 70%),
+                  radial-gradient(circle at 20% 80%, rgba(255,255,0,0.08), transparent 70%);
+      animation: moveBg 20s infinite alternate ease-in-out;
       z-index: -1;
     }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes moveBg {
+      0% { background-position: 0 0, 100% 0, 0 100%; }
+      100% { background-position: 100% 100%, 0 100%, 100% 0; }
     }
 
     header {
       text-align: center;
-      padding: 100px 20px 70px;
-      position: relative;
+      padding: 110px 20px 70px;
     }
 
     header img {
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      border: 4px solid #FFD700;
+      border: 3px solid #00b3ff;
+      box-shadow: 0 0 30px #00b3ff, 0 0 60px rgba(0,179,255,0.5);
       object-fit: cover;
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
       animation: float 4s ease-in-out infinite;
     }
 
@@ -65,86 +64,106 @@
     }
 
     .typing-name {
-      display: inline-block;
       font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      font-weight: 700;
-      color: #FFD700;
-      text-shadow: 0 0 20px #FFD700;
-      border-right: 3px solid #FFD700;
+      font-size: 3.2rem;
+      color: #00e1ff;
+      margin-top: 25px;
+      text-shadow: 0 0 20px #00e1ff;
+      border-right: 3px solid #00e1ff;
       white-space: nowrap;
       overflow: hidden;
       width: 0;
-      animation: typing 3s steps(20, end) forwards, blink 0.8s infinite;
-      margin-top: 20px;
+      animation: typing 3s steps(22, end) forwards, blink 0.7s infinite;
     }
 
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 15ch; }
-    }
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
+    @keyframes typing { from { width: 0; } to { width: 22ch; } }
+    @keyframes blink { 50% { border-color: transparent; } }
 
     header p {
-      font-size: 1.1rem;
-      color: #ccc;
+      color: #b5b5b5;
       margin-top: 15px;
+      font-size: 1.1rem;
     }
 
-    a {
-      color: #FFD700;
+    header a {
+      color: #00e1ff;
       text-decoration: none;
       font-weight: 600;
+      display: inline-block;
+      margin-top: 20px;
+      border: 2px solid #00e1ff;
+      padding: 10px 22px;
+      border-radius: 50px;
       transition: all 0.3s ease;
     }
-    a:hover {
-      color: #fff;
-      text-shadow: 0 0 12px #FFD700;
+
+    header a:hover {
+      background: #00e1ff;
+      color: #0b001a;
+      box-shadow: 0 0 20px #00e1ff;
     }
 
     section {
       padding: 90px 8%;
-      position: relative;
-      z-index: 1;
     }
 
     section h2 {
       text-align: center;
-      font-size: 2.4rem;
-      color: #FFD700;
-      margin-bottom: 60px;
       font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 20px rgba(255,215,0,0.6);
-      letter-spacing: 1px;
+      color: #ffdd33;
+      font-size: 2.4rem;
+      text-shadow: 0 0 18px rgba(255,221,51,0.7);
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    section h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #ffdd33, transparent);
+      margin: 12px auto 0;
+      border-radius: 2px;
     }
 
     .grid {
       display: grid;
-      gap: 30px;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
     }
 
     .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,215,0,0.3);
-      border-radius: 18px;
-      padding: 30px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 25px rgba(255,215,0,0.1);
-      transition: all 0.5s ease;
+      background: rgba(255,255,255,0.04);
+      border-radius: 20px;
+      padding: 35px;
+      border: 1px solid rgba(255,255,255,0.08);
       position: relative;
+      transition: all 0.5s ease;
       overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, transparent, rgba(0,238,255,0.15), transparent);
+      transform: translateX(-100%);
+      transition: 0.8s;
+    }
+
+    .card:hover::before {
+      transform: translateX(100%);
     }
 
     .card:hover {
       transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 0 35px rgba(255,215,0,0.4);
+      box-shadow: 0 0 30px rgba(0,238,255,0.3);
     }
 
     .card h3 {
-      color: #FFD700;
+      color: #00e1ff;
       font-size: 1.4rem;
       margin-bottom: 15px;
     }
@@ -159,67 +178,56 @@
     form {
       max-width: 600px;
       margin: auto;
-      background: rgba(255,255,255,0.06);
-      border-radius: 15px;
-      padding: 35px;
-      box-shadow: 0 0 25px rgba(255,215,0,0.15);
+      background: rgba(255,255,255,0.05);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 25px rgba(0,238,255,0.15);
     }
 
     form input, form textarea {
       width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 18px;
-      border: 1px solid rgba(255,215,0,0.3);
-      border-radius: 8px;
       background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(0,238,255,0.3);
       color: #fff;
-      font-size: 1rem;
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
       outline: none;
       transition: all 0.3s ease;
     }
 
     form input:focus, form textarea:focus {
-      border-color: #FFD700;
-      box-shadow: 0 0 10px rgba(255,215,0,0.5);
+      border-color: #00e1ff;
+      box-shadow: 0 0 10px #00e1ff;
     }
 
     form button {
-      background: #FFD700;
+      background: linear-gradient(90deg, #00b3ff, #00ffcc);
+      color: #000;
       border: none;
-      color: #111;
+      font-weight: 700;
       font-size: 1rem;
-      font-weight: 600;
-      padding: 12px 30px;
-      border-radius: 8px;
+      border-radius: 50px;
+      padding: 12px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.4s ease;
       width: 100%;
     }
 
     form button:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 15px #FFD700;
+      box-shadow: 0 0 20px #00e1ff;
+      transform: scale(1.05);
     }
 
     footer {
       text-align: center;
-      padding: 40px;
-      background: #0d0d0d;
+      padding: 40px 10px;
+      background: #050010;
+      border-top: 1px solid rgba(255,255,255,0.1);
       color: #aaa;
       font-size: 0.9rem;
-      letter-spacing: 0.5px;
-      border-top: 1px solid rgba(255,215,0,0.2);
-    }
-
-    section::before {
-      content: "";
-      display: block;
-      width: 90px;
-      height: 4px;
-      margin: 0 auto 40px;
-      background: linear-gradient(90deg, transparent, #FFD700, transparent);
-      border-radius: 2px;
     }
   </style>
 </head>
@@ -229,7 +237,7 @@
   <header>
     <img src="profile.jpeg" alt="Priyanshi Gautam">
     <h1 class="typing-name">PRIYANSHI GAUTAM</h1>
-    <p>Motivated Graduate | Data Analytics & Testing Enthusiast</p>
+    <p>Quality Analyst | Data Analytics Enthusiast</p>
     <p>📍 Uttar Pradesh | 📧 priyanshig836@gmail.com | 📱 +91 9068786795</p>
     <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">🔗 LinkedIn</a>
   </header>
@@ -238,16 +246,16 @@
   <section>
     <h2 data-aos="fade-up">Skills</h2>
     <div class="grid">
-      <div class="card" data-aos="flip-left">
+      <div class="card" data-aos="zoom-in">
         <h3>Testing & QA</h3>
         <ul>
           <li>Manual Testing</li>
           <li>Automation (Appium, Selenium)</li>
           <li>Bug Tracking (JIRA, Trello, ClickUp)</li>
-          <li>Cross-browser & API Testing</li>
+          <li>API & Cross-browser Testing</li>
         </ul>
       </div>
-      <div class="card" data-aos="flip-up">
+      <div class="card" data-aos="zoom-in" data-aos-delay="150">
         <h3>Programming</h3>
         <ul>
           <li>JavaScript</li>
@@ -255,13 +263,13 @@
           <li>TypeScript (Angular)</li>
         </ul>
       </div>
-      <div class="card" data-aos="flip-right">
+      <div class="card" data-aos="zoom-in" data-aos-delay="300">
         <h3>Data Analytics</h3>
         <ul>
           <li>Power BI, DAX, Power Query</li>
-          <li>Dashboard Design</li>
+          <li>Dashboard Design & Data Visualization</li>
           <li>Data Cleaning & Transformation</li>
-          <li>Geographic & Time Series Analysis</li>
+          <li>Time Series & Geo Analysis</li>
         </ul>
       </div>
     </div>
@@ -275,18 +283,18 @@
         <h3>Eoxysit Solution LLP – Quality Analyst</h3>
         <p><em>Feb 2025 – Present</em></p>
         <ul>
-          <li>End-to-end manual testing for web & mobile apps.</li>
-          <li>Designed test cases and tracked bugs in JIRA & Trello.</li>
-          <li>Collaborated with developers for issue resolution.</li>
+          <li>Conducted manual & automation testing for web and mobile apps.</li>
+          <li>Managed bug tracking via JIRA and Trello.</li>
+          <li>Collaborated with dev teams for resolution and QA audits.</li>
         </ul>
       </div>
       <div class="card" data-aos="fade-left">
         <h3>JPR Systems Pvt Ltd – Web Developer</h3>
         <p><em>Mar 2024 – Jun 2024</em></p>
         <ul>
-          <li>Built Angular-based dynamic web apps.</li>
-          <li>Integrated REST APIs with reactive forms & validations.</li>
-          <li>Collaborated on UI/UX improvements.</li>
+          <li>Developed Angular-based responsive web applications.</li>
+          <li>Integrated REST APIs and optimized UX/UI.</li>
+          <li>Worked on component design and reactive forms.</li>
         </ul>
       </div>
     </div>
@@ -298,59 +306,43 @@
     <div class="grid">
       <div class="card" data-aos="zoom-in">
         <h3>DJPlayNow – Mobile App Testing</h3>
-        <p>Tools: Appium, JavaScript, JIRA</p>
         <ul>
           <li>Automated playback, login & search testing.</li>
-          <li>Reduced manual testing with automation scripts.</li>
+          <li>Reduced manual testing using Appium scripts.</li>
         </ul>
       </div>
       <div class="card" data-aos="zoom-in" data-aos-delay="150">
         <h3>Kari Collective – E-commerce Testing</h3>
-        <p>Tools: Trello, Selenium (learning), JavaScript</p>
         <ul>
-          <li>Manual testing for login, cart & checkout.</li>
-          <li>Cross-browser testing & bug reporting.</li>
+          <li>Performed UI and regression testing.</li>
+          <li>Logged 40+ detailed bugs using Trello.</li>
         </ul>
       </div>
       <div class="card" data-aos="zoom-in" data-aos-delay="300">
-        <h3>AI-Powered Book Writing App</h3>
+        <h3>Waitlist Dashboard – Power BI</h3>
         <ul>
-          <li>Validated writing, editing & saving features.</li>
-          <li>Documented issues in ClickUp for developers.</li>
+          <li>Transformed data into interactive dashboards.</li>
+          <li>Created KPIs and Y/Y visual insights.</li>
         </ul>
       </div>
       <div class="card" data-aos="zoom-in" data-aos-delay="450">
-        <h3>Waitlist Dashboard – Power BI</h3>
-        <ul>
-          <li>Transformed raw data into interactive dashboards.</li>
-          <li>Built Y/Y comparison visuals with time intelligence.</li>
-        </ul>
-      </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="600">
         <h3>Uber Trip Analysis – Power BI</h3>
         <ul>
-          <li>Analyzed trip patterns, peak times & driver performance.</li>
-          <li>Derived insights for data-driven decisions.</li>
-        </ul>
-      </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="750">
-        <h3>Code Flow – Algorithm Visualization Tool</h3>
-        <ul>
-          <li>Visualized sorting algorithms with live metrics.</li>
-          <li>Optimized performance for better efficiency.</li>
+          <li>Analyzed trends and performance metrics.</li>
+          <li>Built geo-based insights visuals.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT FORM -->
+  <!-- CONTACT -->
   <section id="contact">
     <h2 data-aos="fade-up">Contact Me</h2>
     <form id="contact-form" data-aos="zoom-in">
-      <input type="text" id="name" placeholder="Your Name" required />
-      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
       <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
+      <button type="submit">Send Message 🚀</button>
     </form>
   </section>
 
@@ -360,16 +352,11 @@
 
   <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1200, once: true });
-  </script>
+  <script>AOS.init({ duration: 1200, once: true });</script>
 
-  <!-- EmailJS Integration -->
+  <!-- EmailJS -->
   <script>
-    (function(){
-      emailjs.init("5bUKpnL53r4Npm3aR"); // 🔹 Replace with your EmailJS public key
-    })();
-
+    (function(){ emailjs.init("5bUKpnL53r4Npm3aR"); })();
     document.getElementById("contact-form").addEventListener("submit", function(e) {
       e.preventDefault();
       emailjs.send("service_4uwqhsl", "template_nypl0pp", {
@@ -379,11 +366,10 @@
       }).then(() => {
         alert("✅ Message Sent Successfully!");
         e.target.reset();
-      }, (error) => {
-        alert("❌ Failed to send message. Please try again.");
+      }, () => {
+        alert("❌ Failed to send message. Try again later.");
       });
     });
   </script>
-
 </body>
 </html>
