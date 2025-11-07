@@ -1,351 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshi Gautam | Portfolio</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Priyanshi Gautam — Portfolio (Animated)</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- GSAP (animations) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<!-- tsParticles (background particles) -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.6.1/tsparticles.bundle.min.js"></script>
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+<!-- VanillaTilt (card tilt) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.3/vanilla-tilt.min.js"></script>
 
-    body {
-      font-family: 'Urbanist', sans-serif;
-      color: #fff;
-      background: radial-gradient(circle at 20% 30%, #020024, #090979, #00d4ff);
-      overflow-x: hidden;
-      position: relative;
-    }
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-    /* Moving Gradient Overlay */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(120deg, rgba(0,255,255,0.15), rgba(255,0,255,0.15), rgba(255,255,255,0.05));
-      mix-blend-mode: overlay;
-      animation: gradientMove 10s infinite alternate ease-in-out;
-      z-index: -1;
-    }
+<style>
+  :root{
+    --bg-1:#040717;
+    --bg-2:#070a1a;
+    --accent-cyan:#00e1ff;
+    --accent-pink:#ff6ec7;
+    --accent-gold:#ffd24d;
+    --glass: rgba(255,255,255,0.04);
+    --txt:#e8eefc;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,"Helvetica Neue",Arial;color:var(--txt);background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-cyan);text-decoration:none}
+  /* Preloader */
+  #preloader{
+    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,rgba(2,2,10,0.8),rgba(8,2,20,0.75));z-index:9999;
+    backdrop-filter: blur(6px);
+  }
+  .logoPulse{
+    width:152px;height:152px;border-radius:20px;background:linear-gradient(135deg,var(--accent-pink),var(--accent-cyan),var(--accent-gold));
+    box-shadow:0 12px 60px rgba(0,225,255,0.12), inset 0 -8px 22px rgba(0,0,0,0.22);
+    display:flex;align-items:center;justify-content:center;font-family:'Orbitron';font-weight:700;font-size:18px;color:#050014;
+    transform:scale(.92);
+    animation:logoBeat 1.6s ease-in-out infinite;
+  }
+  @keyframes logoBeat{0%{transform:scale(.94)}50%{transform:scale(1.04)}100%{transform:scale(.94)}}
 
-    @keyframes gradientMove {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50px); }
-    }
-
-    /* HEADER */
-    header {
-      text-align: center;
-      padding: 120px 20px 70px;
-      position: relative;
-    }
-
-    header img {
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
-      border: 3px solid #00fff7;
-      object-fit: cover;
-      box-shadow: 0 0 40px #00fff7, 0 0 80px rgba(0,255,247,0.5);
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-
-    .typing-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 3.4rem;
-      color: #00f5ff;
-      letter-spacing: 2px;
-      text-shadow: 0 0 25px #00f5ff, 0 0 60px #0088ff;
-      margin-top: 25px;
-      border-right: 3px solid #00f5ff;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 3.5s steps(22, end) forwards, blink 0.8s infinite;
-    }
-
-    @keyframes typing { from { width: 0; } to { width: 22ch; } }
-    @keyframes blink { 50% { border-color: transparent; } }
-
-    header p {
-      color: #cfdfff;
-      margin-top: 12px;
-      font-size: 1.1rem;
-    }
-
-    header a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 28px;
-      color: #fff;
-      border: 2px solid #00fff7;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.4s ease;
-      background: transparent;
-    }
-
-    header a:hover {
-      background: linear-gradient(90deg, #00fff7, #00b3ff);
-      box-shadow: 0 0 25px #00fff7;
-      color: #000;
-      transform: scale(1.05);
-    }
-
-    /* SECTION */
-    section {
-      padding: 100px 8%;
-      position: relative;
-      z-index: 1;
-    }
-
-    section h2 {
-      text-align: center;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 2.6rem;
-      color: #ffcc70;
-      text-shadow: 0 0 30px rgba(255,204,112,0.8);
-      margin-bottom: 60px;
-      position: relative;
-    }
-
-    section h2::after {
-      content: "";
-      display: block;
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, #ffcc70, transparent);
-      margin: 15px auto 0;
-      border-radius: 2px;
-    }
-
-    /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 35px;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(15px);
-      transition: all 0.5s ease;
-      box-shadow: 0 0 25px rgba(0,255,255,0.08);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(130deg, transparent, rgba(0,255,255,0.25), transparent);
-      transform: translateX(-100%);
-      transition: 1s;
-    }
-
-    .card:hover::before {
-      transform: translateX(100%);
-    }
-
-    .card:hover {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 0 40px rgba(0,255,255,0.4);
-    }
-
-    .card h3 {
-      color: #00fff7;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      text-shadow: 0 0 10px #00f5ff;
-    }
-
-    .card ul {
-      list-style: none;
-      color: #d8d8d8;
-      line-height: 1.8;
-    }
-
-    /* CONTACT FORM */
-    form {
-      max-width: 600px;
-      margin: auto;
-      background: rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 45px;
-      box-shadow: 0 0 40px rgba(0,255,255,0.2);
-      backdrop-filter: blur(12px);
-    }
-
-    form input, form textarea {
-      width: 100%;
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(0,255,255,0.4);
-      color: #fff;
-      border-radius: 10px;
-      padding: 14px 15px;
-      margin-bottom: 18px;
-      outline: none;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-    }
-
-    form input:focus, form textarea:focus {
-      border-color: #00fff7;
-      box-shadow: 0 0 15px #00fff7;
-    }
-
-    form button {
-      background: linear-gradient(90deg, #00f5ff, #00b3ff);
-      border: none;
-      color: #000;
-      padding: 14px 0;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      width: 100%;
-    }
-
-    form button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00fff7;
-    }
-
-    footer {
-      text-align: center;
-      padding: 50px 10px;
-      background: #010010;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: #aaa;
-      font-size: 0.9rem;
-      letter-spacing: 0.6px;
-    }
-  </style>
+  /* Layout */
+  .container{max-width:1150px;margin:0 auto;padding:36px 20px}
+  header{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:22px 0}
+  .nav-left{display:flex;gap:18px;align-items:center}
+  .brand{display:flex;gap:12px;align-items:center}
+  .brand .photoWrap{width:72px;height:72px;border-radius:14px;overflow:hidden;border:3px solid rgba(255,255,255,0.04);box-shadow:0 6px 30px rgba(199,125,255,0.08);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+  .brand img{width:100%;height:100%;object-fit:cover;display:block}
+  .brand h4{font-family:'Orbitron';margin:0;color:var(--accent-gold);letter-spacing:1px;font-size:14px}
+  .nav-right a{font-weight:600;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);color:var(--txt)}
+  .hero{display:grid;grid-template-columns: 1fr 420px;gap:32px;align-items:center;padding:30px 0}
+  .intro{
+    padding:28px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(8px);box-shadow:0 10px 40px rgba(2,2,10,0.6);
+  }
+  .eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent-pink),var(--accent-cyan));color:#050014;font-weight:700;font-size:13px}
+  .title{font-family:'Orbitron';font-size:34px;color:var(--accent-cyan);margin:18px 0 6px;overflow:hidden}
+  .typing-cursor{border-right:3px solid var(--accent-cyan);padding-right:6px}
+  .subtitle{color:#d6d9e6;font-size:17px;margin-bottom:14px}
+  .blurb{color:#bfc6da;line-height:1.6}
+  .ctaRow{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+  .btn-primary{padding:12px 18px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#00101a;font-weight:700;box-shadow:0 8px 30px rgba(0,225,255,0.12)}
+  .btn-ghost{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--txt);font-weight:600}
+  /* Floating profile card */
+  .profileCard{
+    width:420px;border-radius:16px;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.05);backdrop-filter: blur(8px);position:relative;overflow:hidden;
+    box-shadow: 0 15px 45px rgba(2,6,20,0.7);
+  }
+  .profile-photo{width:120px;height:120px;margin:14px auto;border-radius:999px;border:4px solid rgba(255,255,255,0.06);overflow:hidden;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--accent-gold),var(--accent-pink));box-shadow:0 10px 30px rgba(199,125,255,0.12)}
+  .profile-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:999px}
+  .profile-meta{text-align:center;color:#e8e9f2}
+  .meta-role{color:var(--accent-gold);font-weight:700;margin-top:8px}
+  .profile-stats{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+  .stat{padding:8px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid rgba(255,255,255,0.03);font-weight:600;font-size:13px}
+  /* Sections */
+  section{padding:56px 0}
+  .section-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .card{
+    border-radius:12px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(6px);
+    transform-origin:center;transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .card:hover{transform:translateY(-8px) rotateX(1deg);box-shadow:0 20px 50px rgba(0,0,0,0.6)}
+  .card h3{font-family:'Orbitron';color:var(--accent-pink);margin-bottom:8px}
+  .card p{color:#cfd6ea;line-height:1.6;font-size:15px}
+  /* Projects ribbon */
+  .project{position:relative;overflow:hidden}
+  .ribbon{position:absolute;top:12px;left:-46px;padding:8px 76px;background:linear-gradient(90deg,var(--accent-gold),var(--accent-pink));color:#061023;font-weight:700;transform:rotate(-18deg);box-shadow:0 8px 30px rgba(199,125,255,0.06)}
+  /* Contact form */
+  .contact-wrap{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+  .contact-left{flex:1;min-width:300px}
+  .contact-right{flex:1;min-width:300px}
+  form{display:block}
+  .field{margin-bottom:12px}
+  input,textarea{
+    width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--txt);outline:none;font-size:15px;
+  }
+  .input-floating{position:relative}
+  .input-floating label{position:absolute;left:14px;top:12px;pointer-events:none;color:#9aa3bd;font-size:13px;transition:all .18s ease}
+  input:focus + label, input:not(:placeholder-shown) + label, textarea:focus + label, textarea:not(:placeholder-shown) + label{
+    top:-10px;left:12px;font-size:12px;color:var(--accent-cyan);background:linear-gradient(90deg,rgba(0,0,0,0.5),transparent);padding:2px 6px;border-radius:6px
+  }
+  .sendBtn{display:inline-block;padding:12px 20px;border-radius:12px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#00101a;font-weight:800;border:none;cursor:pointer;width:100%}
+  .sendBtn:active{transform:translateY(2px)}
+  /* Toast */
+  .toast{position:fixed;right:24px;bottom:24px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#031026;padding:14px 18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6);display:none;z-index:9999}
+  /* Footer */
+  footer{padding:26px 0;text-align:center;color:#9aa3bd;border-top:1px solid rgba(255,255,255,0.02);margin-top:36px}
+  /* Responsive */
+  @media (max-width:960px){
+    .hero{grid-template-columns:1fr;gap:18px}
+    header{flex-direction:column;align-items:flex-start;gap:12px;padding:12px}
+    .brand h4{font-size:14px}
+    .profileCard{width:100%}
+  }
+</style>
 </head>
-
 <body>
+
+<!-- Preloader -->
+<div id="preloader" aria-hidden="false">
+  <div class="logoPulse" aria-hidden="true">Priyanshi</div>
+</div>
+
+<!-- Particles container (absolute) -->
+<div id="tsparticles" style="position:fixed;inset:0;z-index:-2"></div>
+
+<!-- Main container -->
+<div class="container" id="mainContent" style="opacity:0;transform:translateY(6px)">
+
   <header>
-    <img src="profile.jpeg" alt="Priyanshi Gautam">
-    <h1 class="typing-name">PRIYANSHI GAUTAM</h1>
-    <p>Quality Analyst | Data Analytics Enthusiast</p>
-    <p>📍 Uttar Pradesh | 📧 priyanshig836@gmail.com | 📱 +91 9068786795</p>
-    <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">🔗 LinkedIn</a>
+    <div class="nav-left">
+      <div class="brand">
+        <div class="photoWrap"><img src="profile.jpeg" alt="Priyanshi"></div>
+        <div>
+          <h4>PRIYANSHI GAUTAM</h4>
+          <div style="color:#9aa3bd;font-size:13px">Data Analytics · Quality Analyst</div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="#contactSection">Contact</a>
+    </div>
   </header>
 
-  <section>
-    <h2 data-aos="fade-up">Skills</h2>
-    <div class="grid">
-      <div class="card" data-aos="zoom-in">
-        <h3>Testing & QA</h3>
-        <ul>
-          <li>Manual Testing</li>
-          <li>Automation (Appium, Selenium)</li>
-          <li>Bug Tracking (JIRA, Trello, ClickUp)</li>
-          <li>API & Cross-browser Testing</li>
-        </ul>
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="intro" id="intro">
+        <span class="eyebrow">Hello — I'm Priyanshi</span>
+        <div class="title"><span id="typedName" class="typing-cursor" aria-live="polite" aria-atomic="true"></span></div>
+        <div class="subtitle">Motivated Graduate • Data Analytics & Testing Enthusiast</div>
+        <div class="blurb">
+          I turn raw data into clear insights and break applications to make them stronger. I combine robust manual testing, growing automation skills, and Power BI dashboards to help teams ship reliable, data-driven products.
+        </div>
+        <div class="ctaRow">
+          <button class="btn-primary" id="downloadBtn">Download CV</button>
+          <a class="btn-ghost" href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank" rel="noopener">Open LinkedIn</a>
+        </div>
+        <div style="margin-top:16px;color:#b7bfd8;font-size:13px">
+          📍 Uttar Pradesh &nbsp;•&nbsp; 📧 priyanshig836@gmail.com &nbsp;•&nbsp; 📱 +91 9068786795
+        </div>
       </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="150">
-        <h3>Programming</h3>
-        <ul>
-          <li>JavaScript</li>
-          <li>Python (Basics)</li>
-          <li>TypeScript (Angular)</li>
-        </ul>
-      </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="300">
-        <h3>Data Analytics</h3>
-        <ul>
-          <li>Power BI, DAX, Power Query</li>
-          <li>Dashboard Design & Visualization</li>
-          <li>Data Cleaning & Transformation</li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
-  <section>
-    <h2 data-aos="fade-up">Experience</h2>
-    <div class="grid">
-      <div class="card" data-aos="fade-right">
-        <h3>Eoxysit Solution LLP – Quality Analyst</h3>
-        <p><em>Feb 2025 – Present</em></p>
-        <ul>
-          <li>End-to-end testing for web and mobile apps.</li>
-          <li>Managed bug tracking in JIRA & Trello.</li>
-          <li>Worked closely with developers for resolutions.</li>
-        </ul>
+      <div class="profileCard" id="profileCard" aria-label="Profile card">
+        <div class="profile-photo">
+          <img src="profile.jpeg" alt="Priyanshi Photo">
+        </div>
+        <div class="profile-meta">
+          <div style="font-weight:700;font-size:18px">Priyanshi Gautam</div>
+          <div class="meta-role">Quality Analyst • Data Analyst</div>
+          <div style="margin-top:10px;color:#cfd6ea;font-size:14px">B.Tech Computer Science — JECRC University</div>
+        </div>
+        <div class="profile-stats">
+          <div class="stat">4+ Projects</div>
+          <div class="stat">Power BI</div>
+          <div class="stat">Appium / Selenium</div>
+        </div>
       </div>
-      <div class="card" data-aos="fade-left">
-        <h3>JPR Systems Pvt Ltd – Web Developer</h3>
-        <p><em>Mar 2024 – Jun 2024</em></p>
-        <ul>
-          <li>Developed Angular-based web applications.</li>
-          <li>Integrated APIs and optimized UI/UX.</li>
-        </ul>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div style="max-width:1150px;margin:0 auto">
+        <h2 style="font-family:Orbitron, sans-serif;color:var(--accent-gold);text-align:center">Skills & Tools</h2>
+        <div class="section-grid">
+          <div class="card" data-tilt>
+            <h3>Testing & QA</h3>
+            <p>Manual testing, Test case design, Bug tracking (JIRA/Trello/ClickUp), API & cross-browser testing.</p>
+          </div>
+          <div class="card" data-tilt>
+            <h3>Automation</h3>
+            <p>Appium & Selenium basics, creating reusable scripts to reduce manual cycle time, CI-friendly test patterns.</p>
+          </div>
+          <div class="card" data-tilt>
+            <h3>Data & BI</h3>
+            <p>Power BI (DAX & Power Query), dashboard design, time-series & geographic analysis, insight storytelling.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <h2 data-aos="fade-up">Projects</h2>
-    <div class="grid">
-      <div class="card" data-aos="zoom-in"><h3>DJPlayNow – App Testing</h3><ul><li>Automated playback, login & search.</li><li>Reduced manual testing by 40%.</li></ul></div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="150"><h3>Kari Collective – QA</h3><ul><li>Performed UI & regression testing.</li><li>Logged 40+ issues on Trello.</li></ul></div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="300"><h3>Waitlist Dashboard – Power BI</h3><ul><li>Interactive dashboards with KPIs.</li></ul></div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="450"><h3>Uber Trip Analysis</h3><ul><li>Analyzed trip trends & metrics.</li></ul></div>
-    </div>
-  </section>
+    <!-- Experience -->
+    <section id="experience">
+      <div style="max-width:1150px;margin:0 auto">
+        <h2 style="font-family:Orbitron, sans-serif;color:var(--accent-gold);text-align:center">Experience</h2>
+        <div class="section-grid">
+          <div class="card project" data-tilt>
+            <div class="ribbon">Quality Analyst</div>
+            <h3>Eoxysit Solution LLP</h3>
+            <p><em>Feb 2025 – Present</em></p>
+            <p>End-to-end manual & cross-platform testing. Created test cases, tracked & validated bug fixes, and collaborated with devs to improve release quality.</p>
+          </div>
+          <div class="card" data-tilt>
+            <h3>JPR Systems Pvt Ltd</h3>
+            <p><em>Mar 2024 – Jun 2024</em></p>
+            <p>Worked as web developer on Angular projects, integrated REST APIs, and improved UI/UX and validation flows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2 data-aos="fade-up">Contact Me</h2>
-    <form id="contact-form" data-aos="zoom-in">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message 🚀</button>
-    </form>
-  </section>
+    <!-- Projects -->
+    <section id="projects">
+      <div style="max-width:1150px;margin:0 auto">
+        <h2 style="font-family:Orbitron, sans-serif;color:var(--accent-gold);text-align:center">Selected Projects</h2>
+        <div class="section-grid">
+          <div class="card" data-tilt>
+            <h3>DJPlayNow — Mobile App Testing</h3>
+            <p>Automated playback scenarios, login flows, and search; improved test coverage & reliability.</p>
+          </div>
+          <div class="card" data-tilt>
+            <h3>Kari Collective — E-commerce Tests</h3>
+            <p>Manual functional & cross-browser testing for checkout, cart, and user auth flows. Logged detailed defects for dev fixes.</p>
+          </div>
+          <div class="card" data-tilt>
+            <h3>Waitlist Dashboard — Power BI</h3>
+            <p>Built interactive dashboards with time-intelligence, KPIs, and geography-driven visuals for stakeholder decisions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contactSection">
+      <div style="max-width:1150px;margin:0 auto">
+        <h2 style="font-family:Orbitron, sans-serif;color:var(--accent-gold);text-align:center">Contact Me</h2>
+        <div class="contact-wrap">
+          <div class="contact-left">
+            <div class="card">
+              <h3>Get in touch</h3>
+              <p>Interested in collaborating or hiring? Drop a message — I reply quickly and love meaningful projects.</p>
+              <p style="margin-top:12px;color:#c9d6ef">📧 priyanshig836@gmail.com<br>📍 Uttar Pradesh • 📱 +91 9068786795</p>
+              <div style="margin-top:12px">
+                <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" class="btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-right">
+            <form id="contact-form" class="card" autocomplete="off">
+              <div class="field input-floating">
+                <input id="cname" type="text" placeholder=" " required />
+                <label for="cname">Your Name</label>
+              </div>
+              <div class="field input-floating">
+                <input id="cemail" type="email" placeholder=" " required />
+                <label for="cemail">Your Email</label>
+              </div>
+              <div class="field input-floating">
+                <textarea id="cmessage" rows="6" placeholder=" " required></textarea>
+                <label for="cmessage">Your Message</label>
+              </div>
+              <button class="sendBtn" type="submit">Send Message — 🚀</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <footer>
-    <p>© 2025 Priyanshi Gautam | Data Analytics & Testing Enthusiast</p>
+    <small>© 2025 Priyanshi Gautam — Data Analytics & Testing Enthusiast</small>
   </footer>
+</div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init({ duration: 1200, once: true });</script>
+<!-- Toast -->
+<div id="toast" class="toast" role="status" aria-live="polite">Message sent ✅</div>
 
-  <script>
-    (function(){ emailjs.init("5bUKpnL53r4Npm3aR"); })();
-    document.getElementById("contact-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      emailjs.send("service_4uwqhsl", "template_nypl0pp", {
-        from_name: name.value,
-        from_email: email.value,
-        message: message.value
-      }).then(() => {
-        alert("✅ Message Sent Successfully!");
-        e.target.reset();
-      }).catch(() => alert("❌ Failed to send message."));
+<script>
+/* -------------------------
+   tsParticles background
+   ------------------------- */
+if (window.tsParticles) {
+  tsParticles.load("tsparticles", {
+    fpsLimit: 60,
+    particles: {
+      number: { value: 90, density: { enable: true, area: 900 } },
+      color: { value: ["#00e1ff","#ff6ec7","#ffd24d"] },
+      shape: { type: "circle" },
+      opacity: { value: 0.12, random: { enable: true, minimumValue: 0.03 } },
+      size: { value: { min: 1, max: 6 } },
+      move: { enable: true, speed: 0.6, direction: "bottom-right", outModes: { default: "out" } },
+      links: { enable: true, distance: 140, color: "#ffffff", opacity: 0.04, width: 1 }
+    },
+    detectRetina: true
+  });
+}
+
+/* -------------------------
+   Preloader fix & safe hide
+   ------------------------- */
+function hidePreloader() {
+  const pre = document.getElementById('preloader');
+  if (!pre) return;
+  try {
+    gsap.to(pre, { autoAlpha: 0, duration: 0.7, ease: "power2.out" });
+  } catch (e) {
+    pre.style.opacity = 0;
+  }
+  setTimeout(() => { pre.style.display = 'none'; document.getElementById('mainContent').style.opacity = '1'; document.getElementById('mainContent').style.transform = 'none'; }, 900);
+}
+// Hide either on load or after 2.8s (whichever comes first)
+window.addEventListener('load', hidePreloader);
+setTimeout(hidePreloader, 2800);
+
+/* -------------------------
+   Typed name (JS) — ensures visible text (no width-0 issue)
+   ------------------------- */
+const typed = document.getElementById('typedName');
+const nameText = "PRIYANSHI GAUTAM";
+typed.textContent = "";
+let idx = 0;
+function typedLoop(){ 
+  if(idx < nameText.length){
+    typed.textContent += nameText[idx++];
+    setTimeout(typedLoop, 48);
+  } else {
+    // cursor removal after typing
+    typed.style.borderRight = '0px solid transparent';
+  }
+}
+setTimeout(typedLoop, 380);
+
+/* -------------------------
+   GSAP entrance & scroll animations
+   ------------------------- */
+gsap.registerPlugin(ScrollTrigger);
+try {
+  gsap.from("#mainContent", { autoAlpha: 0, y: 8, duration: 0.9, ease: "power3.out" });
+  gsap.from("#profileCard", { autoAlpha: 0, x: 40, duration: 0.9, ease: "power3.out", delay: 0.15 });
+  gsap.utils.toArray('.card').forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: "top 88%" },
+      y: 26, autoAlpha: 0, duration: .7, delay: i*0.05, ease: "power3.out"
     });
-  </script>
+  });
+} catch (e) { /* safe fallback */ }
+
+/* -------------------------
+   VanillaTilt for 3D tilt on cards
+   ------------------------- */
+try {
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 12, speed: 400, glare: true, "max-glare":0.12, scale: 1.02
+  });
+} catch (e) { /* safe fallback if library missing */ }
+
+/* -------------------------
+   Download CV button (demo)
+   ------------------------- */
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  // Replace with your CV file path to enable download:
+  // window.location.href = 'Priyanshi_CV.pdf';
+  gsap.fromTo('.logoPulse',{scale:1},{scale:1.06,duration:.18,yoyo:true,repeat:1});
+  alert("Demo: replace the click handler with a direct link to your CV (PDF) or set window.location.href to your file.");
+});
+
+/* -------------------------
+   EmailJS - Contact form
+   Replace placeholders with your real EmailJS keys
+   ------------------------- */
+(function(){ emailjs.init("EMAILJS_USER_ID"); })(); // <-- replace with your EmailJS public key
+
+const contactForm = document.getElementById('contact-form');
+contactForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('cname').value.trim();
+  const email = document.getElementById('cemail').value.trim();
+  const message = document.getElementById('cmessage').value.trim();
+
+  if(!name || !email || !message){ alert("Please complete all fields."); return; }
+  const payload = { from_name: name, from_email: email, message: message };
+
+  // Replace SERVICE_ID and TEMPLATE_ID with your EmailJS values
+  emailjs.send('EMAILJS_SERVICE_ID','EMAILJS_TEMPLATE_ID', payload)
+    .then(() => {
+      showToast("Message sent — thank you!");
+      contactForm.reset();
+    }, (err) => {
+      console.error(err);
+      showToast("Failed to send — try again.");
+    });
+});
+
+function showToast(text){
+  const t = document.getElementById('toast');
+  t.textContent = text;
+  t.style.display = 'block';
+  try { gsap.fromTo(t,{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.45}); }
+  catch(e){ t.style.opacity = 1; }
+  setTimeout(()=> {
+    try { gsap.to(t,{y:30,autoAlpha:0,duration:.45,onComplete:()=> t.style.display='none'}); }
+    catch(e){ t.style.display='none'; }
+  }, 3000);
+}
+
+/* -------------------------
+   Minor polish: header background on scroll
+   ------------------------- */
+try {
+  gsap.to('header',{background: 'linear-gradient(90deg, rgba(0,0,0,0.14), rgba(0,0,0,0.06))', scrollTrigger:{
+    trigger: 'main', start: 'top top', scrub: .6
+  }});
+} catch(e){}
+</script>
 </body>
 </html>
