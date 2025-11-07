@@ -43,41 +43,60 @@
       100% { background-position: 100% 100%, 0 100%, 100% 0; }
     }
 
-    header {
-      text-align: center;
-      padding: 110px 20px 70px;
-    }
+   header {
+  text-align: center;
+  padding: 110px 20px 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    header img {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      border: 3px solid #00b3ff;
-      box-shadow: 0 0 30px #00b3ff, 0 0 60px rgba(0,179,255,0.5);
-      object-fit: cover;
-      animation: float 4s ease-in-out infinite;
-    }
+header img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid #00b3ff;
+  box-shadow: 0 0 30px #00b3ff, 0 0 60px rgba(0,179,255,0.5);
+  object-fit: cover;
+  animation: float 4s ease-in-out infinite;
+}
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
+.typing-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
-    .typing-name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3.2rem;
-      color: #00e1ff;
-      margin-top: 25px;
-      text-shadow: 0 0 20px #00e1ff;
-      border-right: 3px solid #00e1ff;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 3s steps(22, end) forwards, blink 0.7s infinite;
-    }
+.typing-name {
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.2rem;
+  color: #00e1ff;
+  text-shadow: 0 0 20px #00e1ff;
+  border-right: 3px solid #00e1ff;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  text-align: center;
+  animation: typing 3s steps(22, end) forwards, blink 0.7s infinite, glow 3s infinite alternate;
+}
 
-    @keyframes typing { from { width: 0; } to { width: 22ch; } }
-    @keyframes blink { 50% { border-color: transparent; } }
+@keyframes typing {
+  from { width: 0; }
+  to { width: 22ch; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #00e1ff, 0 0 20px #00e1ff; }
+  to { text-shadow: 0 0 30px #00e1ff, 0 0 60px #00ffff; }
+}
+
 
     header p {
       color: #b5b5b5;
@@ -238,7 +257,7 @@
     <img src="profile.jpeg" alt="Priyanshi Gautam">
     <h1 class="typing-name">PRIYANSHI GAUTAM</h1>
     <p>Quality Analyst | Data Analytics Enthusiast</p>
-    <p>📍 Jaipur | 📧 priyanshig836@gmail.com | 📱 +91 9068786795</p>
+    <p>📍 Uttar Pradesh | 📧 priyanshig836@gmail.com | 📱 +91 9068786795</p>
     <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">🔗 LinkedIn</a>
   </header>
 
