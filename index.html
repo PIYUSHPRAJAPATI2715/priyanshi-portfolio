@@ -23,86 +23,86 @@
 
 <style>
   :root{
-    --bg-1:#040717;
-    --bg-2:#070a1a;
+    --bg-1:#050014;
+    --bg-2:#0b0026;
     --accent-cyan:#00e1ff;
-    --accent-pink:#ff6ec7;
+    --accent-violet:#c77dff;
     --accent-gold:#ffd24d;
-    --glass: rgba(255,255,255,0.04);
-    --txt:#e8eefc;
+    --glass: rgba(255,255,255,0.05);
+    --glass-2: rgba(255,255,255,0.03);
+    --txt:#eaeefb;
   }
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,"Helvetica Neue",Arial;color:var(--txt);background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased;}
   a{color:var(--accent-cyan);text-decoration:none}
   /* Preloader */
   #preloader{
-    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,rgba(2,2,10,0.8),rgba(8,2,20,0.75));z-index:9999;
-    backdrop-filter: blur(6px);
+    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,rgba(2,2,10,0.7),rgba(8,2,20,0.65));z-index:9999;
+    backdrop-filter: blur(4px);
   }
   .logoPulse{
-    width:152px;height:152px;border-radius:20px;background:linear-gradient(135deg,var(--accent-pink),var(--accent-cyan),var(--accent-gold));
-    box-shadow:0 12px 60px rgba(0,225,255,0.12), inset 0 -8px 22px rgba(0,0,0,0.22);
+    width:140px;height:140px;border-radius:24px;background:linear-gradient(135deg,var(--accent-violet),var(--accent-cyan),var(--accent-gold));
+    box-shadow:0 8px 50px rgba(0,225,255,0.12), inset 0 -6px 18px rgba(0,0,0,0.25);
     display:flex;align-items:center;justify-content:center;font-family:'Orbitron';font-weight:700;font-size:18px;color:#050014;
-    transform:scale(.92);
+    transform:scale(.92); /* subtle */
     animation:logoBeat 1.6s ease-in-out infinite;
   }
   @keyframes logoBeat{0%{transform:scale(.94)}50%{transform:scale(1.04)}100%{transform:scale(.94)}}
 
   /* Layout */
-  .container{max-width:1150px;margin:0 auto;padding:36px 20px}
-  header{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:22px 0}
+  .container{max-width:1150px;margin:0 auto;padding:36px 24px}
+  header{display:flex;gap:28px;align-items:center;justify-content:space-between;padding:28px 16px}
   .nav-left{display:flex;gap:18px;align-items:center}
-  .brand{display:flex;gap:12px;align-items:center}
-  .brand .photoWrap{width:72px;height:72px;border-radius:14px;overflow:hidden;border:3px solid rgba(255,255,255,0.04);box-shadow:0 6px 30px rgba(199,125,255,0.08);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+  .brand{display:flex;gap:14px;align-items:center}
+  .brand .photoWrap{width:84px;height:84px;border-radius:18px;overflow:hidden;border:3px solid rgba(255,255,255,0.06);box-shadow:0 6px 30px rgba(199,125,255,0.12);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
   .brand img{width:100%;height:100%;object-fit:cover;display:block}
-  .brand h4{font-family:'Orbitron';margin:0;color:var(--accent-gold);letter-spacing:1px;font-size:14px}
+  .brand h4{font-family:'Orbitron';margin:0;color:var(--accent-gold);letter-spacing:1px}
   .nav-right a{font-weight:600;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);color:var(--txt)}
-  .hero{display:grid;grid-template-columns: 1fr 420px;gap:32px;align-items:center;padding:30px 0}
+  .hero{display:grid;grid-template-columns: 1fr 420px;gap:36px;align-items:center;padding:40px 0}
   .intro{
-    padding:28px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:30px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
     border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(8px);box-shadow:0 10px 40px rgba(2,2,10,0.6);
   }
-  .eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent-pink),var(--accent-cyan));color:#050014;font-weight:700;font-size:13px}
-  .title{font-family:'Orbitron';font-size:34px;color:var(--accent-cyan);margin:18px 0 6px;overflow:hidden}
-  .typing-cursor{border-right:3px solid var(--accent-cyan);padding-right:6px}
-  .subtitle{color:#d6d9e6;font-size:17px;margin-bottom:14px}
+  .eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent-violet),var(--accent-cyan));color:#050014;font-weight:700;font-size:13px}
+  .title{font-family:'Orbitron';font-size:34px;color:var(--accent-cyan);margin:18px 0 6px}
+  .subtitle{color:#d6d9e6;font-size:18px;margin-bottom:18px}
   .blurb{color:#bfc6da;line-height:1.6}
-  .ctaRow{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
-  .btn-primary{padding:12px 18px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#00101a;font-weight:700;box-shadow:0 8px 30px rgba(0,225,255,0.12)}
-  .btn-ghost{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--txt);font-weight:600}
+  .ctaRow{display:flex;gap:14px;margin-top:20px}
+  .btn-primary{padding:12px 20px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-violet));color:#031026;font-weight:700;box-shadow:0 10px 30px rgba(0,225,255,0.12)}
+  .btn-ghost{padding:12px 18px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--txt);font-weight:600}
   /* Floating profile card */
   .profileCard{
-    width:420px;border-radius:16px;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+    width:420px;border-radius:18px;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
     border:1px solid rgba(255,255,255,0.05);backdrop-filter: blur(8px);position:relative;overflow:hidden;
-    box-shadow: 0 15px 45px rgba(2,6,20,0.7);
+    box-shadow: 0 15px 45px rgba(12,0,40,0.7);
   }
-  .profile-photo{width:120px;height:120px;margin:14px auto;border-radius:999px;border:4px solid rgba(255,255,255,0.06);overflow:hidden;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,var(--accent-gold),var(--accent-pink));box-shadow:0 10px 30px rgba(199,125,255,0.12)}
+  .profile-photo{width:120px;height:120px;margin:18px auto;border-radius:999px;border:4px solid rgba(255,255,255,0.06);overflow:hidden;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--accent-gold),var(--accent-violet));box-shadow:0 10px 30px rgba(199,125,255,0.12)}
   .profile-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:999px}
   .profile-meta{text-align:center;color:#e8e9f2}
   .meta-role{color:var(--accent-gold);font-weight:700;margin-top:8px}
-  .profile-stats{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
-  .stat{padding:8px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid rgba(255,255,255,0.03);font-weight:600;font-size:13px}
+  .profile-stats{display:flex;gap:12px;justify-content:center;margin-top:14px}
+  .stat{padding:8px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid rgba(255,255,255,0.03);font-weight:600}
   /* Sections */
-  section{padding:56px 0}
-  .section-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  section{padding:60px 0}
+  .section-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
   .card{
-    border-radius:12px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px;padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
     border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(6px);
     transform-origin:center;transition:transform .35s ease, box-shadow .35s ease;
   }
-  .card:hover{transform:translateY(-8px) rotateX(1deg);box-shadow:0 20px 50px rgba(0,0,0,0.6)}
-  .card h3{font-family:'Orbitron';color:var(--accent-pink);margin-bottom:8px}
-  .card p{color:#cfd6ea;line-height:1.6;font-size:15px}
-  /* Projects ribbon */
-  .project{position:relative;overflow:hidden}
-  .ribbon{position:absolute;top:12px;left:-46px;padding:8px 76px;background:linear-gradient(90deg,var(--accent-gold),var(--accent-pink));color:#061023;font-weight:700;transform:rotate(-18deg);box-shadow:0 8px 30px rgba(199,125,255,0.06)}
+  .card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,0,0,0.6)}
+  .card h3{font-family:'Orbitron';color:var(--accent-violet);margin-bottom:8px}
+  .card p{color:#cfd6ea;line-height:1.6}
+  /* Projects with ribbon */
+  .project {position:relative;overflow:hidden}
+  .ribbon{position:absolute;top:14px;left:-48px;padding:8px 80px;background:linear-gradient(90deg,var(--accent-gold),var(--accent-violet));color:#061023;font-weight:700;transform:rotate(-18deg);box-shadow:0 8px 30px rgba(199,125,255,0.08)}
   /* Contact form */
-  .contact-wrap{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
-  .contact-left{flex:1;min-width:300px}
-  .contact-right{flex:1;min-width:300px}
+  .contact-wrap{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
+  .contact-left{flex:1;min-width:320px}
+  .contact-right{flex:1;min-width:320px}
   form{display:block}
-  .field{margin-bottom:12px}
+  .field{margin-bottom:14px}
   input,textarea{
     width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--txt);outline:none;font-size:15px;
   }
@@ -111,17 +111,17 @@
   input:focus + label, input:not(:placeholder-shown) + label, textarea:focus + label, textarea:not(:placeholder-shown) + label{
     top:-10px;left:12px;font-size:12px;color:var(--accent-cyan);background:linear-gradient(90deg,rgba(0,0,0,0.5),transparent);padding:2px 6px;border-radius:6px
   }
-  .sendBtn{display:inline-block;padding:12px 20px;border-radius:12px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#00101a;font-weight:800;border:none;cursor:pointer;width:100%}
+  .sendBtn{display:inline-block;padding:12px 20px;border-radius:12px;background:linear-gradient(90deg,var(--accent-gold),var(--accent-violet));color:#050014;font-weight:800;border:none;cursor:pointer;width:100%}
   .sendBtn:active{transform:translateY(2px)}
   /* Toast */
-  .toast{position:fixed;right:24px;bottom:24px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#031026;padding:14px 18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6);display:none;z-index:9999}
+  .toast{position:fixed;right:24px;bottom:24px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-violet));color:#031026;padding:14px 18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6);display:none;z-index:9999}
   /* Footer */
-  footer{padding:26px 0;text-align:center;color:#9aa3bd;border-top:1px solid rgba(255,255,255,0.02);margin-top:36px}
+  footer{padding:30px 0;text-align:center;color:#9aa3bd;border-top:1px solid rgba(255,255,255,0.02);margin-top:40px}
   /* Responsive */
   @media (max-width:960px){
-    .hero{grid-template-columns:1fr;gap:18px}
-    header{flex-direction:column;align-items:flex-start;gap:12px;padding:12px}
-    .brand h4{font-size:14px}
+    .hero{grid-template-columns:1fr;gap:20px}
+    header{flex-direction:column;align-items:flex-start;gap:12px;padding:20px}
+    .brand h4{font-size:16px}
     .profileCard{width:100%}
   }
 </style>
@@ -129,15 +129,15 @@
 <body>
 
 <!-- Preloader -->
-<div id="preloader" aria-hidden="false">
-  <div class="logoPulse" aria-hidden="true">Priyanshi</div>
+<div id="preloader">
+  <div class="logoPulse">Priyanshi</div>
 </div>
 
 <!-- Particles container (absolute) -->
 <div id="tsparticles" style="position:fixed;inset:0;z-index:-2"></div>
 
 <!-- Main container -->
-<div class="container" id="mainContent" style="opacity:0;transform:translateY(6px)">
+<div class="container">
 
   <header>
     <div class="nav-left">
@@ -150,29 +150,29 @@
       </div>
     </div>
     <div class="nav-right">
-      <a href="#contactSection">Contact</a>
+      <a href="#contact">Contact</a>
     </div>
   </header>
 
   <main>
-    <section class="hero" aria-labelledby="hero-heading">
+    <section class="hero">
       <div class="intro" id="intro">
         <span class="eyebrow">Hello — I'm Priyanshi</span>
-        <div class="title"><span id="typedName" class="typing-cursor" aria-live="polite" aria-atomic="true"></span></div>
+        <div class="title" id="typedName">PRIYANSHI GAUTAM</div>
         <div class="subtitle">Motivated Graduate • Data Analytics & Testing Enthusiast</div>
         <div class="blurb">
           I turn raw data into clear insights and break applications to make them stronger. I combine robust manual testing, growing automation skills, and Power BI dashboards to help teams ship reliable, data-driven products.
         </div>
         <div class="ctaRow">
           <button class="btn-primary" id="downloadBtn">Download CV</button>
-          <a class="btn-ghost" href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank" rel="noopener">Open LinkedIn</a>
+          <a class="btn-ghost" href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">Open LinkedIn</a>
         </div>
-        <div style="margin-top:16px;color:#b7bfd8;font-size:13px">
+        <div style="margin-top:20px;color:#b7bfd8;font-size:13px">
           📍 Uttar Pradesh &nbsp;•&nbsp; 📧 priyanshig836@gmail.com &nbsp;•&nbsp; 📱 +91 9068786795
         </div>
       </div>
 
-      <div class="profileCard" id="profileCard" aria-label="Profile card">
+      <div class="profileCard" id="profileCard">
         <div class="profile-photo">
           <img src="profile.jpeg" alt="Priyanshi Photo">
         </div>
@@ -192,7 +192,7 @@
     <!-- Skills -->
     <section id="skills">
       <div style="max-width:1150px;margin:0 auto">
-        <h2 style="font-family:Orbitron, sans-serif;color:var(--accent-gold);text-align:center">Skills & Tools</h2>
+        <h2>Skills & Tools</h2>
         <div class="section-grid">
           <div class="card" data-tilt>
             <h3>Testing & QA</h3>
@@ -213,7 +213,7 @@
     <!-- Experience -->
     <section id="experience">
       <div style="max-width:1150px;margin:0 auto">
-        <h2 style="font-family:Orbitron, sans-serif;color:var(--accent-gold);text-align:center">Experience</h2>
+        <h2>Experience</h2>
         <div class="section-grid">
           <div class="card project" data-tilt>
             <div class="ribbon">Quality Analyst</div>
@@ -233,7 +233,7 @@
     <!-- Projects -->
     <section id="projects">
       <div style="max-width:1150px;margin:0 auto">
-        <h2 style="font-family:Orbitron, sans-serif;color:var(--accent-gold);text-align:center">Selected Projects</h2>
+        <h2>Selected Projects</h2>
         <div class="section-grid">
           <div class="card" data-tilt>
             <h3>DJPlayNow — Mobile App Testing</h3>
@@ -254,7 +254,7 @@
     <!-- Contact -->
     <section id="contactSection">
       <div style="max-width:1150px;margin:0 auto">
-        <h2 style="font-family:Orbitron, sans-serif;color:var(--accent-gold);text-align:center">Contact Me</h2>
+        <h2>Contact Me</h2>
         <div class="contact-wrap">
           <div class="contact-left">
             <div class="card">
@@ -262,7 +262,7 @@
               <p>Interested in collaborating or hiring? Drop a message — I reply quickly and love meaningful projects.</p>
               <p style="margin-top:12px;color:#c9d6ef">📧 priyanshig836@gmail.com<br>📍 Uttar Pradesh • 📱 +91 9068786795</p>
               <div style="margin-top:12px">
-                <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" class="btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" class="btn-ghost">LinkedIn</a>
               </div>
             </div>
           </div>
@@ -296,102 +296,84 @@
 </div>
 
 <!-- Toast -->
-<div id="toast" class="toast" role="status" aria-live="polite">Message sent ✅</div>
+<div id="toast" class="toast">Message sent ✅</div>
 
 <script>
 /* -------------------------
-   tsParticles background
+   Initialize tsParticles (background)
    ------------------------- */
-if (window.tsParticles) {
-  tsParticles.load("tsparticles", {
-    fpsLimit: 60,
-    particles: {
-      number: { value: 90, density: { enable: true, area: 900 } },
-      color: { value: ["#00e1ff","#ff6ec7","#ffd24d"] },
-      shape: { type: "circle" },
-      opacity: { value: 0.12, random: { enable: true, minimumValue: 0.03 } },
-      size: { value: { min: 1, max: 6 } },
-      move: { enable: true, speed: 0.6, direction: "bottom-right", outModes: { default: "out" } },
-      links: { enable: true, distance: 140, color: "#ffffff", opacity: 0.04, width: 1 }
-    },
-    detectRetina: true
-  });
-}
+tsParticles.load("tsparticles", {
+  fpsLimit: 60,
+  particles: {
+    number: { value: 80, density: { enable: true, area: 900 } },
+    color: { value: ["#00e1ff","#c77dff","#ffd24d"] },
+    shape: { type: "circle" },
+    opacity: { value: 0.12, random: { enable: true, minimumValue: 0.04 } },
+    size: { value: { min: 1, max: 6 } },
+    move: { enable: true, speed: 0.6, direction: "bottom-right", outModes: "out" },
+    links: { enable: true, distance: 140, color: "#ffffff", opacity: 0.04, width: 1 }
+  },
+  detectRetina: true
+});
 
 /* -------------------------
-   Preloader fix & safe hide
+   Preloader -> hide after animations setup
    ------------------------- */
-function hidePreloader() {
-  const pre = document.getElementById('preloader');
-  if (!pre) return;
-  try {
-    gsap.to(pre, { autoAlpha: 0, duration: 0.7, ease: "power2.out" });
-  } catch (e) {
-    pre.style.opacity = 0;
-  }
-  setTimeout(() => { pre.style.display = 'none'; document.getElementById('mainContent').style.opacity = '1'; document.getElementById('mainContent').style.transform = 'none'; }, 900);
-}
-// Hide either on load or after 2.8s (whichever comes first)
-window.addEventListener('load', hidePreloader);
-setTimeout(hidePreloader, 2800);
+window.addEventListener('load', () => {
+  gsap.to("#preloader", { autoAlpha: 0, duration: .8, delay: .35, onComplete() { document.getElementById('preloader').style.display='none' }});
+});
 
 /* -------------------------
-   Typed name (JS) — ensures visible text (no width-0 issue)
+   Tiny typed intro using GSAP
    ------------------------- */
 const typed = document.getElementById('typedName');
 const nameText = "PRIYANSHI GAUTAM";
 typed.textContent = "";
 let idx = 0;
-function typedLoop(){ 
-  if(idx < nameText.length){
-    typed.textContent += nameText[idx++];
-    setTimeout(typedLoop, 48);
-  } else {
-    // cursor removal after typing
-    typed.style.borderRight = '0px solid transparent';
-  }
-}
-setTimeout(typedLoop, 380);
+function typedLoop(){ if(idx < nameText.length){ typed.textContent += nameText[idx++]; setTimeout(typedLoop, 55);} else { typed.style.borderRight = '0px solid transparent' } }
+setTimeout(typedLoop, 400);
 
 /* -------------------------
-   GSAP entrance & scroll animations
+   Intro entrance animation (GSAP)
    ------------------------- */
 gsap.registerPlugin(ScrollTrigger);
-try {
-  gsap.from("#mainContent", { autoAlpha: 0, y: 8, duration: 0.9, ease: "power3.out" });
-  gsap.from("#profileCard", { autoAlpha: 0, x: 40, duration: 0.9, ease: "power3.out", delay: 0.15 });
-  gsap.utils.toArray('.card').forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: { trigger: card, start: "top 88%" },
-      y: 26, autoAlpha: 0, duration: .7, delay: i*0.05, ease: "power3.out"
-    });
+const tl = gsap.timeline();
+tl.from("#intro",{autoAlpha:0,y:20,duration:.8,ease:"power3.out"},0)
+  .from("#profileCard",{autoAlpha:0,x:40,duration:.9,ease:"power3.out"},0.15);
+
+/* Scroll-triggered animations for cards */
+gsap.utils.toArray('.card').forEach((card, i) => {
+  gsap.from(card, {
+    scrollTrigger: { trigger: card, start: "top 85%" },
+    y: 30, autoAlpha: 0, duration: .8, delay: i*0.06, ease: "power3.out"
   });
-} catch (e) { /* safe fallback */ }
+});
 
 /* -------------------------
    VanillaTilt for 3D tilt on cards
    ------------------------- */
-try {
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 12, speed: 400, glare: true, "max-glare":0.12, scale: 1.02
-  });
-} catch (e) { /* safe fallback if library missing */ }
+VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+  max: 12,
+  speed: 400,
+  glare: true,
+  "max-glare":0.12,
+  scale: 1.02
+});
 
 /* -------------------------
    Download CV button (demo)
    ------------------------- */
 document.getElementById('downloadBtn').addEventListener('click', () => {
-  // Replace with your CV file path to enable download:
-  // window.location.href = 'Priyanshi_CV.pdf';
+  // If you have a CV file, set window.location to that file url. For demo: small animation
   gsap.fromTo('.logoPulse',{scale:1},{scale:1.06,duration:.18,yoyo:true,repeat:1});
-  alert("Demo: replace the click handler with a direct link to your CV (PDF) or set window.location.href to your file.");
+  alert("If you want, replace this demo with your CV file link (set window.location.href to your PDF).");
 });
 
 /* -------------------------
    EmailJS - Contact form
-   Replace placeholders with your real EmailJS keys
+   Replace USER_ID/SERVICE_ID/TEMPLATE_ID with your EmailJS values
    ------------------------- */
-(function(){ emailjs.init("EMAILJS_USER_ID"); })(); // <-- replace with your EmailJS public key
+(function(){ emailjs.init("EMAILJS_USER_ID"); })(); // <-- REPLACE
 
 const contactForm = document.getElementById('contact-form');
 contactForm.addEventListener('submit', function(e){
@@ -401,9 +383,13 @@ contactForm.addEventListener('submit', function(e){
   const message = document.getElementById('cmessage').value.trim();
 
   if(!name || !email || !message){ alert("Please complete all fields."); return; }
-  const payload = { from_name: name, from_email: email, message: message };
+  const payload = {
+    from_name: name,
+    from_email: email,
+    message: message
+  };
 
-  // Replace SERVICE_ID and TEMPLATE_ID with your EmailJS values
+  // replace service & template with your own
   emailjs.send('EMAILJS_SERVICE_ID','EMAILJS_TEMPLATE_ID', payload)
     .then(() => {
       showToast("Message sent — thank you!");
@@ -418,22 +404,18 @@ function showToast(text){
   const t = document.getElementById('toast');
   t.textContent = text;
   t.style.display = 'block';
-  try { gsap.fromTo(t,{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.45}); }
-  catch(e){ t.style.opacity = 1; }
-  setTimeout(()=> {
-    try { gsap.to(t,{y:30,autoAlpha:0,duration:.45,onComplete:()=> t.style.display='none'}); }
-    catch(e){ t.style.display='none'; }
-  }, 3000);
+  gsap.fromTo(t,{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.45});
+  setTimeout(()=> gsap.to(t,{y:30,autoAlpha:0,duration:.45,onComplete:()=> t.style.display='none'}),3000);
 }
 
 /* -------------------------
-   Minor polish: header background on scroll
+   Small scroll animation polish
    ------------------------- */
-try {
-  gsap.to('header',{background: 'linear-gradient(90deg, rgba(0,0,0,0.14), rgba(0,0,0,0.06))', scrollTrigger:{
-    trigger: 'main', start: 'top top', scrub: .6
-  }});
-} catch(e){}
+gsap.to('header',{background: 'linear-gradient(90deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1))', scrollTrigger:{
+  trigger: 'main', start: 'top top', scrub: .6
+}});
 </script>
 </body>
 </html>
+
+
