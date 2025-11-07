@@ -43,7 +43,7 @@
       100% { background-position: 100% 100%, 0 100%, 100% 0; }
     }
 
-   header {
+  header {
   text-align: center;
   padding: 110px 20px 70px;
   display: flex;
@@ -59,7 +59,8 @@ header img {
   border: 3px solid #00b3ff;
   box-shadow: 0 0 30px #00b3ff, 0 0 60px rgba(0,179,255,0.5);
   object-fit: cover;
-  animation: float 4s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite, fadeIn 2s ease-out;
+  margin-bottom: 35px; /* ✅ Added space between photo and text */
 }
 
 .typing-wrapper {
@@ -67,6 +68,7 @@ header img {
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 15px; /* ✅ Space between name and tagline */
 }
 
 .typing-name {
@@ -83,6 +85,7 @@ header img {
   animation: typing 3s steps(22, end) forwards, blink 0.7s infinite, glow 3s infinite alternate;
 }
 
+/* Keyframes */
 @keyframes typing {
   from { width: 0; }
   to { width: 22ch; }
@@ -95,6 +98,16 @@ header img {
 @keyframes glow {
   from { text-shadow: 0 0 10px #00e1ff, 0 0 20px #00e1ff; }
   to { text-shadow: 0 0 30px #00e1ff, 0 0 60px #00ffff; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 
