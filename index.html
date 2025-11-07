@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Priyanshi Gautam | Portfolio — Premium Animated</title>
+<title>Priyanshi Gautam | Portfolio — Dynamic & Energetic</title>
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
@@ -17,107 +17,109 @@
 
 <style>
   :root{
-    --bg-1:#020317;
-    --bg-2:#070a20;
-    --accent-cyan:#00e1ff;
-    --accent-pink:#ff6ec7;
-    --accent-mid:#7b61ff;
-    --glass: rgba(255,255,255,0.04);
-    --muted:#bfcbe0;
+    --bg-1:#030217;
+    --bg-2:#070420;
+    --cyan:#00e1ff;
+    --magenta:#ff5ec7;
+    --violet:#8a6bff;
+    --glass: rgba(255,255,255,0.035);
+    --muted:#b9c6e0;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;font-family:'Outfit',system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:#eaf2ff;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
-  a{color:var(--accent-cyan);text-decoration:none}
+  html,body{height:100%;font-family:'Outfit',system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:#eaf6ff;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased;}
+  a{color:var(--cyan);text-decoration:none}
 
   /* PRELOADER */
-  #preloader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,3,10,0.85), rgba(5,6,15,0.8));z-index:9999;backdrop-filter: blur(6px)}
-  .pulse{
-    width:140px;height:140px;border-radius:20px;background:linear-gradient(135deg,var(--accent-pink),var(--accent-cyan));
-    display:flex;align-items:center;justify-content:center;color:#031024;font-family:'Orbitron';font-weight:700;box-shadow:0 12px 60px rgba(0,0,0,0.5),0 0 40px rgba(0,225,255,0.12);
-    animation:beat 1.6s ease-in-out infinite;
+  #preloader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,3,10,0.9), rgba(5,6,15,0.92));z-index:9999;backdrop-filter:blur(6px)}
+  .pre-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+  .spinner{
+    width:140px;height:140px;border-radius:20px;background:linear-gradient(135deg,var(--magenta),var(--cyan));
+    display:flex;align-items:center;justify-content:center;color:#041020;font-family:'Orbitron';font-weight:800;box-shadow:0 16px 60px rgba(0,0,0,0.6),0 0 40px rgba(0,225,255,0.12);
+    position:relative;overflow:hidden
   }
-  @keyframes beat{0%{transform:scale(.96)}50%{transform:scale(1.06)}100%{transform:scale(.96)}}
+  .ring{position:absolute;inset:6px;border-radius:14px;border:3px solid rgba(255,255,255,0.06);}
+  .spinner .label{z-index:3;transform:translateY(2px)}
 
-  /* PARTICLES container */
-  #tsparticles{position:fixed;inset:0;z-index:-2}
+  /* particles container */
+  #tsparticles{position:fixed;inset:0;z-index:-3}
 
-  /* PAGE CONTAINER */
-  .wrap{max-width:1150px;margin:0 auto;padding:30px 20px;opacity:1;transition:opacity .45s ease}
+  /* dynamic orbs */
+  .orb{position:fixed;border-radius:50%;pointer-events:none;filter:blur(18px);mix-blend-mode:screen;opacity:0.6}
+  .orb.c1{width:420px;height:420px;background:linear-gradient(135deg,var(--cyan),var(--violet));left:-120px;top:-80px;z-index:-2}
+  .orb.c2{width:300px;height:300px;background:linear-gradient(135deg,var(--magenta),var(--cyan));right:-140px;bottom:-120px;z-index:-2}
 
-  /* HEADER */
+  /* page wrap */
+  .wrap{max-width:1200px;margin:0 auto;padding:28px 20px;opacity:0;transform:translateY(10px)}
+
+  /* header */
   header{display:flex;flex-direction:column;align-items:center;padding:80px 12px 40px;gap:12px;text-align:center}
-  .avatar{
-    width:220px;height:220px;border-radius:999px;border:4px solid rgba(255,255,255,0.06);
-    overflow:hidden;box-shadow:0 10px 50px rgba(123,97,255,0.12),0 0 60px rgba(0,225,255,0.08);
-  }
-  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-  .name{
-    font-family:'Orbitron',sans-serif;font-size:3rem;color:var(--accent-cyan);text-shadow:0 0 20px rgba(0,225,255,0.16);letter-spacing:1px;margin-top:6px;overflow:visible;
-  }
-  .role{color:var(--muted);margin-top:8px;font-size:1.05rem}
+  .avatar{width:220px;height:220px;border-radius:999px;border:4px solid rgba(255,255,255,0.06);overflow:hidden;box-shadow:0 14px 60px rgba(138,107,255,0.12),0 0 80px rgba(0,225,255,0.06);transform-origin:center}
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.9,.25,1)}
+  .avatar:hover img{transform:scale(1.06) rotate(-1.2deg)}
+  .name{font-family:'Orbitron',sans-serif;font-size:3.2rem;color:var(--cyan);text-shadow:0 0 26px rgba(0,225,255,0.16);letter-spacing:1px;margin-top:6px}
+  .role{color:var(--muted);margin-top:8px;font-size:1.05rem;opacity:0.95}
   .contact-line{color:var(--muted);margin-top:8px;font-size:0.95rem}
   .hero-links{margin-top:14px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
-  .btn{
-    padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);color:#fff;font-weight:700;cursor:pointer;transition:all .28s}
-  }
-  .btn-primary{background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#051022;border:none;box-shadow:0 10px 30px rgba(0,225,255,0.12)}
 
-  /* SECTIONS */
-  section{padding:70px 0}
-  h2{font-family:'Orbitron';font-size:2.4rem;text-align:center;color:var(--accent-mid);text-shadow:0 0 18px rgba(123,97,255,0.18);margin-bottom:28px}
-  .glow-line{height:4px;width:100px;margin:10px auto;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));border-radius:6px;box-shadow:0 0 20px rgba(0,225,255,0.12)}
+  .btn{padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);color:#fff;font-weight:700;cursor:pointer;transition:all .28s}
+  .btn-primary{background:linear-gradient(90deg,var(--cyan),var(--magenta));color:#051022;border:none;box-shadow:0 12px 40px rgba(0,225,255,0.12)}
+  .btn-primary:active{transform:translateY(2px)}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+  /* sections */
+  section{padding:64px 0}
+  h2{font-family:'Orbitron';font-size:2.2rem;text-align:center;color:var(--violet);text-shadow:0 0 20px rgba(138,107,255,0.12);margin-bottom:18px}
+  .glow{height:4px;width:86px;margin:10px auto;background:linear-gradient(90deg,var(--cyan),var(--magenta));border-radius:6px}
 
-  /* CARD */
-  .card{
-    position:relative;padding:22px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(8px);transition:transform .38s, box-shadow .38s;
-    overflow:hidden;
-  }
-  .card::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg, transparent, rgba(255,255,255,0.02), transparent);transform:translateX(-120%);transition:transform .9s}
-  .card:hover::after{transform:translateX(120%)}
-  .card:hover{transform:translateY(-10px);box-shadow:0 18px 60px rgba(0,0,0,0.6)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:18px}
 
-  .card h3{font-family:'Orbitron';color:var(--accent-pink);margin-bottom:10px;font-size:1.25rem}
-  .card ul{list-style:none;color:var(--muted);line-height:1.7;margin-left:0;padding-left:0}
+  .card{position:relative;padding:22px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(8px);transition:transform .38s,box-shadow .38s;overflow:hidden}
+  .card:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg, transparent, rgba(255,255,255,0.02), transparent);transform:translateX(-120%);transition:transform .9s}
+  .card:hover:before{transform:translateX(120%)}
+  .card:hover{transform:translateY(-12px) rotateX(2deg);box-shadow:0 40px 90px rgba(0,0,0,0.6)}
+  .card h3{font-family:'Orbitron';color:var(--magenta);margin-bottom:10px}
+  .card ul{list-style:none;color:var(--muted);line-height:1.7}
 
-  /* CONTACT FORM */
-  .contact-form{max-width:720px;margin:0 auto;padding:28px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(8px)}
+  /* project shimmer line */
+  .shimmer{height:6px;width:100%;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.15), rgba(255,255,255,0.04));transform:translateX(-110%);position:relative;margin-top:12px;overflow:hidden}
+
+  /* contact form */
+  .contact-form{max-width:720px;margin:24px auto;padding:28px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(8px)}
   .field{margin-bottom:12px}
-  input,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#eaf2ff;outline:none;font-size:15px}
-  input:focus,textarea:focus{box-shadow:0 0 10px rgba(0,225,255,0.12);border-color:var(--accent-cyan)}
-  .send{background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));border:none;padding:12px;border-radius:10px;font-weight:800;color:#031020;cursor:pointer;width:100%}
-  .send:active{transform:translateY(2px)}
+  input,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#eaf6ff;outline:none;font-size:15px}
+  input:focus,textarea:focus{box-shadow:0 0 12px rgba(0,225,255,0.12);border-color:var(--cyan)}
+  .send{background:linear-gradient(90deg,var(--cyan),var(--magenta));border:none;padding:12px;border-radius:10px;font-weight:800;color:#031020;cursor:pointer;width:100%}
 
-  /* TOAST */
-  .toast{position:fixed;right:20px;bottom:20px;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#021226;box-shadow:0 8px 40px rgba(0,0,0,0.45);display:none;z-index:9999}
+  /* toast */
+  .toast{position:fixed;right:20px;bottom:20px;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--magenta));color:#021226;box-shadow:0 8px 40px rgba(0,0,0,0.45);display:none;z-index:9999}
 
-  /* FOOTER */
   footer{padding:28px;text-align:center;color:#a7b6d8;border-top:1px solid rgba(255,255,255,0.03)}
 
-  /* Responsive tweaks */
-  @media (max-width:900px){
-    .hero{padding:36px 12px}
-    .name{font-size:2.2rem}
-    header img{width:180px;height:180px}
-  }
+  @media (max-width:900px){.name{font-size:2.2rem}.avatar{width:170px;height:170px}}
 </style>
 </head>
 <body>
 
 <!-- Preloader -->
 <div id="preloader" role="alert" aria-busy="true">
-  <div class="pulse">PRIYANSHI</div>
+  <div class="pre-wrap">
+    <div class="spinner">
+      <div class="ring"></div>
+      <div class="label">PRIYANSHI</div>
+    </div>
+    <div style="color:var(--muted);font-weight:600;letter-spacing:1px">Loading creative motion...</div>
+  </div>
 </div>
 
-<!-- Particles -->
+<!-- particles -->
 <div id="tsparticles"></div>
 
+<!-- dynamic blurred orbs (parallax) -->
+<div class="orb c1" aria-hidden="true"></div>
+<div class="orb c2" aria-hidden="true"></div>
+
 <div class="wrap" id="pageWrap" style="opacity:0;transform:translateY(8px)">
-  <!-- HEADER -->
   <header>
-    <div class="avatar"><img src="profile.jpeg" alt="Priyanshi Gautam"></div>
+    <div class="avatar" id="avatar"><img src="profile.jpeg" alt="Priyanshi Gautam"></div>
     <div class="name" id="typedName" aria-live="polite" aria-atomic="true"></div>
     <div class="role">Quality Analyst | Data Analytics Enthusiast</div>
     <div class="contact-line">📍 Uttar Pradesh &nbsp;•&nbsp; 📧 priyanshig836@gmail.com &nbsp;•&nbsp; 📱 +91 9068786795</div>
@@ -127,10 +129,9 @@
     </div>
   </header>
 
-  <!-- SKILLS -->
   <section id="skills">
     <h2>Skills</h2>
-    <div class="glow-line"></div>
+    <div class="glow"></div>
     <div class="grid">
       <div class="card" data-tilt>
         <h3>Testing & QA</h3>
@@ -140,7 +141,9 @@
           <li>Bug Tracking (JIRA, Trello, ClickUp)</li>
           <li>API & Cross-browser Testing</li>
         </ul>
+        <div class="shimmer" aria-hidden="true"></div>
       </div>
+
       <div class="card" data-tilt>
         <h3>Programming</h3>
         <ul>
@@ -148,7 +151,9 @@
           <li>Python (Basics)</li>
           <li>TypeScript (Angular)</li>
         </ul>
+        <div class="shimmer" aria-hidden="true"></div>
       </div>
+
       <div class="card" data-tilt>
         <h3>Data Analytics</h3>
         <ul>
@@ -156,14 +161,14 @@
           <li>Dashboard Design & Visualization</li>
           <li>Data Cleaning & Transformation</li>
         </ul>
+        <div class="shimmer" aria-hidden="true"></div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience">
     <h2>Experience</h2>
-    <div class="glow-line"></div>
+    <div class="glow"></div>
     <div class="grid">
       <div class="card" data-tilt>
         <h3>Eoxysit Solution LLP – Quality Analyst</h3>
@@ -185,10 +190,9 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <h2>Projects</h2>
-    <div class="glow-line"></div>
+    <div class="glow"></div>
     <div class="grid">
       <div class="card" data-tilt>
         <h3>DJPlayNow – App Testing</h3>
@@ -209,10 +213,9 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <h2>Contact Me</h2>
-    <div class="glow-line"></div>
+    <div class="glow"></div>
     <form id="contact-form" class="contact-form" autocomplete="off" aria-label="Contact form">
       <div class="field"><input type="text" id="name" placeholder="Your Name" required></div>
       <div class="field"><input type="email" id="email" placeholder="Your Email" required></div>
@@ -229,111 +232,47 @@
 <div id="toast" class="toast" role="status" aria-live="polite">Message sent ✅</div>
 
 <script>
-/* -------------------------
-  tsParticles background
-   ------------------------- */
-if (window.tsParticles) {
-  tsParticles.load("tsparticles", {
-    fpsLimit: 60,
-    particles: {
-      number: { value: 90, density: { enable: true, area: 800 } },
-      color: { value: ["#00e1ff","#ff6ec7","#7b61ff"] },
-      shape: { type: "circle" },
-      opacity: { value: 0.12, random: { enable: true, minimumValue: 0.03 } },
-      size: { value: { min: 1, max: 6 } },
-      move: { enable: true, speed: 0.6, direction: "bottom-right", outModes: { default: "out" } },
-      links: { enable: true, distance: 140, color: "#ffffff", opacity: 0.04, width: 1 }
-    },
-    detectRetina: true
-  });
+/* tsParticles */
+if(window.tsParticles){
+  tsParticles.load('tsparticles',{fpsLimit:60,particles:{number:{value:110,density:{enable:true,area:900}},color:{value:['#00e1ff','#ff6ec7','#8a6bff']},shape:{type:'circle'},opacity:{value:0.12,random:{enable:true,minimumValue:0.03}},size:{value:{min:1,max:6}},move:{enable:true,speed:0.8,direction:'none',outModes:{default:'out'}},links:{enable:true,distance:140,color:'#ffffff',opacity:0.03,width:1}},detectRetina:true});
 }
 
-/* -------------------------
-   Preloader safe hide
-   ------------------------- */
-function hidePreloader() {
-  const p = document.getElementById('preloader');
-  if(!p) return;
-  try {
-    gsap.to(p, { autoAlpha: 0, duration: 0.6, ease: "power2.out" });
-  } catch(e){ p.style.opacity = 0; }
-  setTimeout(()=>{ p.style.display='none'; gsap.to('#pageWrap',{autoAlpha:1,y:0,duration:0.7,ease:"power3.out"}) }, 800);
-}
-window.addEventListener('load', hidePreloader);
-setTimeout(hidePreloader, 3000); // fallback
+/* Preloader safe hide */
+function hidePreloader(){const p=document.getElementById('preloader');if(!p) return;try{gsap.to(p,{autoAlpha:0,duration:0.6,ease:'power2.out'});}catch(e){p.style.opacity=0;}setTimeout(()=>{p.style.display='none';gsap.to('#pageWrap',{autoAlpha:1,y:0,duration:0.7,ease:'power3.out'})},800);}window.addEventListener('load',hidePreloader);setTimeout(hidePreloader,3500);
 
-/* -------------------------
-   Typing name (guaranteed visible)
-   ------------------------- */
-const typedEl = document.getElementById('typedName');
-const NAME = "PRIYANSHI GAUTAM";
-typedEl.textContent = "";
-let tIdx=0;
-(function type(){
-  if(tIdx < NAME.length){ typedEl.textContent += NAME[tIdx++]; setTimeout(type, 45); }
-  else { typedEl.style.borderRight = '0px solid transparent'; }
-})();
+/* Typed name */
+const typedEl=document.getElementById('typedName');const NAME='PRIYANSHI GAUTAM';typedEl.textContent='';let ti=0;(function t(){if(ti<NAME.length){typedEl.textContent+=NAME[ti++];setTimeout(t,40);}else{typedEl.style.borderRight='0px solid transparent'}})();
 
-/* -------------------------
-   GSAP entrance + scroll
-   ------------------------- */
+/* GSAP hero intro + orbs parallax */
 gsap.registerPlugin(ScrollTrigger);
-gsap.from(".avatar",{y:18,autoAlpha:0,duration:0.9,ease:"power3.out"});
-gsap.from("#typedName",{y:6,autoAlpha:0,duration:0.9,delay:0.12});
-gsap.utils.toArray('.card').forEach((c,i)=>{
-  gsap.from(c,{scrollTrigger:{trigger:c,start:"top 88%"},y:22,autoAlpha:0,duration:0.85,delay:i*0.06,ease:"power3.out"});
-});
+gsap.from('.avatar',{scale:0.86,autoAlpha:0,duration:0.9,delay:0.15,ease:'elastic.out(1,0.6)'});
+gsap.from('#typedName',{y:8,autoAlpha:0,duration:0.9,delay:0.3});
 
-/* -------------------------
-   VanillaTilt for interactivity
-   ------------------------- */
-try{
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), { max:12, speed:450, glare:true, "max-glare":0.14, scale:1.02 });
-}catch(e){}
+gsap.utils.toArray('.card').forEach((c,i)=>{gsap.from(c,{scrollTrigger:{trigger:c,start:'top 88%'},y:28,autoAlpha:0,duration:.85,delay:i*0.06,ease:'power3.out'});});
 
-/* -------------------------
-   Download CV -> placeholder
-   ------------------------- */
-document.getElementById('downloadCV').addEventListener('click', ()=> {
-  alert("Replace this with your CV file link. Example: window.location.href = 'Priyanshi_CV.pdf';");
-});
+/* shimmer animation for all shimmer bars */
+gsap.to('.shimmer',{x:'130%',duration:2.2,repeat:-1,ease:'sine.inOut',stagger:{each:0.25}});
 
-/* -------------------------
-   EmailJS contact form
-   Replace placeholders: EMAILJS_USER_ID, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID
-   ------------------------- */
-(function(){ try{ emailjs.init("EMAILJS_USER_ID"); }catch(e){console.warn("EmailJS not initialized");} })();
+/* orbs follow pointer with smoothing */
+const orb1=document.querySelector('.orb.c1');const orb2=document.querySelector('.orb.c2');let mx=0,my=0;window.addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;gsap.to(orb1,{x:(mx-100)/20,y:(my-80)/20,duration:0.9});gsap.to(orb2,{x:(mx-300)/40,y:(my-300)/40,duration:1.1});});
 
-const form = document.getElementById('contact-form');
-form.addEventListener('submit', function(e){
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  if(!name||!email||!message){ alert("Please fill all fields."); return; }
+/* VanillaTilt */
+try{VanillaTilt.init(document.querySelectorAll('[data-tilt]'),{max:14,speed:500,glare:true,'max-glare':0.18,scale:1.03});}catch(e){}
 
-  const data = { from_name: name, from_email: email, message: message };
+/* Card color trail on hover (adds a small glowing outline) */
+document.querySelectorAll('.card').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=e.clientX-r.left;const y=e.clientY-r.top;card.style.setProperty('--mx',x+'px');card.style.setProperty('--my',y+'px');});});
 
-  // default: try to use your real EmailJS credentials here
-  // emailjs.send('EMAILJS_SERVICE_ID','EMAILJS_TEMPLATE_ID', data)
-  //   .then(()=> { showToast("Message sent — thank you!"); form.reset(); })
-  //   .catch(()=> { showToast("Failed to send — try again."); });
+/* Download CV placeholder */
+document.getElementById('downloadCV').addEventListener('click',()=>{gsap.fromTo('.spinner',{scale:1},{scale:1.06,duration:.12,yoyo:true,repeat:1});alert('Demo: replace with your CV file link (e.g. window.location.href = \'Priyanshi_CV.pdf\')');});
 
-  // If EmailJS not set up, show demo toast
-  showToast("Demo mode — configure EmailJS keys to send emails.");
-  form.reset();
-});
+/* EmailJS */
+try{emailjs.init('EMAILJS_USER_ID');}catch(e){console.warn('EmailJS not initialized');}
+const form=document.getElementById('contact-form');form.addEventListener('submit',function(e){e.preventDefault();const name=document.getElementById('name').value.trim();const email=document.getElementById('email').value.trim();const message=document.getElementById('message').value.trim();if(!name||!email||!message){alert('Please fill all fields.');return;}const payload={from_name:name,from_email:email,message:message};
+// uncomment and replace IDs to enable real email sending
+// emailjs.send('EMAILJS_SERVICE_ID','EMAILJS_TEMPLATE_ID',payload).then(()=>{showToast('Message sent — thank you!');form.reset();}).catch(()=>{showToast('Failed to send — try again.')});
+showToast('Demo mode — configure EmailJS keys to enable sending.');form.reset();});
 
-/* -------------------------
-   Toast
-   ------------------------- */
-function showToast(txt){
-  const t = document.getElementById('toast');
-  t.textContent = txt;
-  t.style.display = 'block';
-  gsap.fromTo(t,{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.45});
-  setTimeout(()=> gsap.to(t,{y:30,autoAlpha:0,duration:.45, onComplete:()=> t.style.display='none'}),3000);
-}
+function showToast(txt){const t=document.getElementById('toast');t.textContent=txt;t.style.display='block';gsap.fromTo(t,{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.45});setTimeout(()=>gsap.to(t,{y:30,autoAlpha:0,duration:.45,onComplete:()=>t.style.display='none'}),3000);} 
 </script>
 </body>
 </html>
