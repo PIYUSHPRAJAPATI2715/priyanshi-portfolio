@@ -8,8 +8,11 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- AOS Animation CSS -->
+  <!-- AOS CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,7 +20,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0b0b0b, #111);
+      background: radial-gradient(circle at top left, #0c0c0c, #111);
       color: #fff;
       overflow-x: hidden;
       position: relative;
@@ -27,11 +30,10 @@
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(45deg, #000, #222, #111, #000);
+      inset: 0;
+      background: linear-gradient(45deg, #000, #191919, #0a0a0a, #000);
       background-size: 400% 400%;
-      animation: gradientMove 15s ease infinite;
+      animation: gradientMove 16s ease infinite;
       z-index: -1;
     }
 
@@ -48,12 +50,11 @@
     }
 
     header img {
-      width: 200px;
-      height: 200px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
       border: 4px solid #FFD700;
       object-fit: cover;
-      object-position: top;
       box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
       animation: float 4s ease-in-out infinite;
     }
@@ -82,14 +83,13 @@
       from { width: 0; }
       to { width: 15ch; }
     }
-
     @keyframes blink {
       50% { border-color: transparent; }
     }
 
     header p {
       font-size: 1.1rem;
-      color: #bbb;
+      color: #ccc;
       margin-top: 15px;
     }
 
@@ -127,13 +127,13 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,215,0,0.3);
       border-radius: 18px;
       padding: 30px;
       backdrop-filter: blur(10px);
       box-shadow: 0 0 25px rgba(255,215,0,0.1);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      transition: all 0.5s ease;
       position: relative;
       overflow: hidden;
     }
@@ -143,64 +143,84 @@
       box-shadow: 0 0 35px rgba(255,215,0,0.4);
     }
 
-    .card::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,215,0,0.15), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 0;
-    }
-
-    .card:hover::after {
-      opacity: 1;
-    }
-
-    h3 {
+    .card h3 {
       color: #FFD700;
       font-size: 1.4rem;
       margin-bottom: 15px;
-      position: relative;
-      z-index: 1;
     }
 
-    ul {
+    .card ul {
       list-style: none;
-      position: relative;
-      z-index: 1;
+      color: #ccc;
+      line-height: 1.8;
     }
 
-    ul li {
-      margin: 6px 0;
-      color: #ccc;
+    /* Contact Form */
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(255,255,255,0.06);
+      border-radius: 15px;
+      padding: 35px;
+      box-shadow: 0 0 25px rgba(255,215,0,0.15);
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 8px;
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    form input:focus, form textarea:focus {
+      border-color: #FFD700;
+      box-shadow: 0 0 10px rgba(255,215,0,0.5);
+    }
+
+    form button {
+      background: #FFD700;
+      border: none;
+      color: #111;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+    }
+
+    form button:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 0 15px #FFD700;
     }
 
     footer {
       text-align: center;
-      padding: 35px;
-      background: #111;
+      padding: 40px;
+      background: #0d0d0d;
       color: #aaa;
       font-size: 0.9rem;
-      position: relative;
-      z-index: 1;
       letter-spacing: 0.5px;
+      border-top: 1px solid rgba(255,215,0,0.2);
     }
 
-    /* Glow Divider */
     section::before {
       content: "";
       display: block;
-      width: 80px;
+      width: 90px;
       height: 4px;
       margin: 0 auto 40px;
       background: linear-gradient(90deg, transparent, #FFD700, transparent);
       border-radius: 2px;
     }
-
   </style>
 </head>
 <body>
@@ -294,7 +314,6 @@
       </div>
       <div class="card" data-aos="zoom-in" data-aos-delay="300">
         <h3>AI-Powered Book Writing App</h3>
-        <p>Tools: ClickUp | Manual & Cross-browser Testing</p>
         <ul>
           <li>Validated writing, editing & saving features.</li>
           <li>Documented issues in ClickUp for developers.</li>
@@ -324,45 +343,47 @@
     </div>
   </section>
 
-  <!-- EDUCATION -->
-  <section>
-    <h2 data-aos="fade-up">Education</h2>
-    <div class="grid">
-      <div class="card" data-aos="fade-up">
-        <h3>B.Tech in Computer Science</h3>
-        <p>JECRC University, Jaipur – 2024</p>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="200">
-        <h3>Diploma in IT</h3>
-        <p>Dayalbagh Educational Institute, Agra – 2021</p>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="400">
-        <h3>High School</h3>
-        <p>SRG Memorial Sr. Sec School, Agra – 2017</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section>
+  <!-- CONTACT FORM -->
+  <section id="contact">
     <h2 data-aos="fade-up">Contact Me</h2>
-    <div class="grid">
-      <div class="card" data-aos="flip-up">
-        <p>📍 Uttar Pradesh</p>
-        <p>📧 priyanshig836@gmail.com</p>
-        <p>📱 +91 9068786795</p>
-      </div>
-    </div>
+    <form id="contact-form" data-aos="zoom-in">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
   <footer>
     <p>© 2025 Priyanshi Gautam | Data Analytics & Testing Enthusiast</p>
   </footer>
 
-  <!-- AOS JS -->
+  <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 1200, once: true });
   </script>
+
+  <!-- EmailJS Integration -->
+  <script>
+    (function(){
+      emailjs.init("5bUKpnL53r4Npm3aR"); // 🔹 Replace with your EmailJS public key
+    })();
+
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      emailjs.send("service_4uwqhsl", "template_nypl0pp", {
+        from_name: document.getElementById("name").value,
+        from_email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+      }).then(() => {
+        alert("✅ Message Sent Successfully!");
+        e.target.reset();
+      }, (error) => {
+        alert("❌ Failed to send message. Please try again.");
+      });
+    });
+  </script>
+
 </body>
 </html>
