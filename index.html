@@ -1,221 +1,147 @@
-[12:18 pm, 7/11/2025] Piyush Prajapati: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Priyanshi Gautam | Portfolio</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Priyanshi Gautam | Portfolio — Premium Animated</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 
-  <!-- AOS Animation CSS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.6.1/tsparticles.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.3/vanilla-tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0c0c0c;
-      color: #f5f5f5;
-      scroll-behavior: smooth;
-    }
-    header {
-      text-align: center;
-      padding: 60px 20px;
-    }
-    header img {
-      width: 200px;
-      height: 200px;
-   …
-[12:21 pm, 7/11/2025] Piyush Prajapati: <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshi Gautam | Portfolio</title>
+<style>
+  :root{
+    --bg-1:#020317;
+    --bg-2:#070a20;
+    --accent-cyan:#00e1ff;
+    --accent-pink:#ff6ec7;
+    --accent-mid:#7b61ff;
+    --glass: rgba(255,255,255,0.04);
+    --muted:#bfcbe0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:'Outfit',system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:#eaf2ff;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  a{color:var(--accent-cyan);text-decoration:none}
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  /* PRELOADER */
+  #preloader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,3,10,0.85), rgba(5,6,15,0.8));z-index:9999;backdrop-filter: blur(6px)}
+  .pulse{
+    width:140px;height:140px;border-radius:20px;background:linear-gradient(135deg,var(--accent-pink),var(--accent-cyan));
+    display:flex;align-items:center;justify-content:center;color:#031024;font-family:'Orbitron';font-weight:700;box-shadow:0 12px 60px rgba(0,0,0,0.5),0 0 40px rgba(0,225,255,0.12);
+    animation:beat 1.6s ease-in-out infinite;
+  }
+  @keyframes beat{0%{transform:scale(.96)}50%{transform:scale(1.06)}100%{transform:scale(.96)}}
 
-  <!-- AOS CSS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  /* PARTICLES container */
+  #tsparticles{position:fixed;inset:0;z-index:-2}
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #0b0b0b, #000);
-      color: #fff;
-      overflow-x: hidden;
-    }
+  /* PAGE CONTAINER */
+  .wrap{max-width:1150px;margin:0 auto;padding:30px 20px;opacity:1;transition:opacity .45s ease}
 
-    /* Floating Particles */
-    body::before {
-      content: "";
-      position: fixed;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,215,0,0.1) 2px, transparent 2px);
-      background-size: 50px 50px;
-      animation: moveStars 20s linear infinite;
-      z-index: 0;
-      opacity: 0.3;
-    }
-    @keyframes moveStars {
-      from { transform: translateY(0); }
-      to { transform: translateY(-200px); }
-    }
+  /* HEADER */
+  header{display:flex;flex-direction:column;align-items:center;padding:80px 12px 40px;gap:12px;text-align:center}
+  .avatar{
+    width:220px;height:220px;border-radius:999px;border:4px solid rgba(255,255,255,0.06);
+    overflow:hidden;box-shadow:0 10px 50px rgba(123,97,255,0.12),0 0 60px rgba(0,225,255,0.08);
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .name{
+    font-family:'Orbitron',sans-serif;font-size:3rem;color:var(--accent-cyan);text-shadow:0 0 20px rgba(0,225,255,0.16);letter-spacing:1px;margin-top:6px;overflow:visible;
+  }
+  .role{color:var(--muted);margin-top:8px;font-size:1.05rem}
+  .contact-line{color:var(--muted);margin-top:8px;font-size:0.95rem}
+  .hero-links{margin-top:14px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .btn{
+    padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);color:#fff;font-weight:700;cursor:pointer;transition:all .28s}
+  }
+  .btn-primary{background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#051022;border:none;box-shadow:0 10px 30px rgba(0,225,255,0.12)}
 
-    header {
-      text-align: center;
-      padding: 100px 20px 60px;
-      position: relative;
-      z-index: 1;
-    }
+  /* SECTIONS */
+  section{padding:70px 0}
+  h2{font-family:'Orbitron';font-size:2.4rem;text-align:center;color:var(--accent-mid);text-shadow:0 0 18px rgba(123,97,255,0.18);margin-bottom:28px}
+  .glow-line{height:4px;width:100px;margin:10px auto;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));border-radius:6px;box-shadow:0 0 20px rgba(0,225,255,0.12)}
 
-    header img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 5px solid #FFD700;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-      animation: float 4s ease-in-out infinite;
-    }
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
 
-    header h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      margin-top: 25px;
-      color: #FFD700;
-      text-shadow: 0 0 15px #FFD700;
-      letter-spacing: 2px;
-      animation: fadeInText 2s ease forwards;
-    }
+  /* CARD */
+  .card{
+    position:relative;padding:22px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(8px);transition:transform .38s, box-shadow .38s;
+    overflow:hidden;
+  }
+  .card::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg, transparent, rgba(255,255,255,0.02), transparent);transform:translateX(-120%);transition:transform .9s}
+  .card:hover::after{transform:translateX(120%)}
+  .card:hover{transform:translateY(-10px);box-shadow:0 18px 60px rgba(0,0,0,0.6)}
 
-    @keyframes fadeInText {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  .card h3{font-family:'Orbitron';color:var(--accent-pink);margin-bottom:10px;font-size:1.25rem}
+  .card ul{list-style:none;color:var(--muted);line-height:1.7;margin-left:0;padding-left:0}
 
-    header p {
-      font-size: 1.1rem;
-      margin-top: 10px;
-      color: #bbb;
-      animation: fadeInText 2s ease forwards;
-    }
+  /* CONTACT FORM */
+  .contact-form{max-width:720px;margin:0 auto;padding:28px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(8px)}
+  .field{margin-bottom:12px}
+  input,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#eaf2ff;outline:none;font-size:15px}
+  input:focus,textarea:focus{box-shadow:0 0 10px rgba(0,225,255,0.12);border-color:var(--accent-cyan)}
+  .send{background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));border:none;padding:12px;border-radius:10px;font-weight:800;color:#031020;cursor:pointer;width:100%}
+  .send:active{transform:translateY(2px)}
 
-    a {
-      color: #FFD700;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: #fff;
-      text-shadow: 0 0 10px #FFD700;
-    }
+  /* TOAST */
+  .toast{position:fixed;right:20px;bottom:20px;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#021226;box-shadow:0 8px 40px rgba(0,0,0,0.45);display:none;z-index:9999}
 
-    section {
-      padding: 90px 8%;
-      position: relative;
-      z-index: 1;
-    }
+  /* FOOTER */
+  footer{padding:28px;text-align:center;color:#a7b6d8;border-top:1px solid rgba(255,255,255,0.03)}
 
-    section h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      color: #FFD700;
-      margin-bottom: 60px;
-      text-shadow: 0 0 15px rgba(255,215,0,0.6);
-      position: relative;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    .grid {
-      display: grid;
-      gap: 30px;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,215,0,0.3);
-      border-radius: 15px;
-      padding: 30px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(255,215,0,0.1);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      position: relative;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 15px;
-      background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,255,255,0.03));
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card:hover {
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 0 30px rgba(255,215,0,0.4);
-    }
-
-    h3 {
-      color: #FFD700;
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-    }
-
-    ul { list-style: none; }
-    ul li { margin: 6px 0; color: #ccc; }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #111;
-      color: #aaa;
-      font-size: 0.9rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Floating Animation */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-  </style>
+  /* Responsive tweaks */
+  @media (max-width:900px){
+    .hero{padding:36px 12px}
+    .name{font-size:2.2rem}
+    header img{width:180px;height:180px}
+  }
+</style>
 </head>
 <body>
 
-  <header data-aos="zoom-in">
-    <img src="profile.JPG" alt="Priyanshi Gautam">
-    <h1>PRIYANSHI GAUTAM</h1>
-    <p>Motivated Graduate | Data Analytics & Testing Enthusiast</p>
-    <p>📍 Uttar Pradesh | 📧 priyanshig836@gmail.com | 📱 +91 9068786795</p>
-    <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">🔗 LinkedIn</a>
+<!-- Preloader -->
+<div id="preloader" role="alert" aria-busy="true">
+  <div class="pulse">PRIYANSHI</div>
+</div>
+
+<!-- Particles -->
+<div id="tsparticles"></div>
+
+<div class="wrap" id="pageWrap" style="opacity:0;transform:translateY(8px)">
+  <!-- HEADER -->
+  <header>
+    <div class="avatar"><img src="profile.jpeg" alt="Priyanshi Gautam"></div>
+    <div class="name" id="typedName" aria-live="polite" aria-atomic="true"></div>
+    <div class="role">Quality Analyst | Data Analytics Enthusiast</div>
+    <div class="contact-line">📍 Uttar Pradesh &nbsp;•&nbsp; 📧 priyanshig836@gmail.com &nbsp;•&nbsp; 📱 +91 9068786795</div>
+    <div class="hero-links">
+      <button class="btn btn-primary" id="downloadCV">Download CV</button>
+      <a class="btn" href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </header>
 
-  <section>
-    <h2 data-aos="fade-up">Skills</h2>
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="glow-line"></div>
     <div class="grid">
-      <div class="card" data-aos="flip-left">
+      <div class="card" data-tilt>
         <h3>Testing & QA</h3>
         <ul>
           <li>Manual Testing</li>
           <li>Automation (Appium, Selenium)</li>
           <li>Bug Tracking (JIRA, Trello, ClickUp)</li>
-          <li>Cross-browser & API Testing</li>
+          <li>API & Cross-browser Testing</li>
         </ul>
       </div>
-      <div class="card" data-aos="flip-right" data-aos-delay="200">
+      <div class="card" data-tilt>
         <h3>Programming</h3>
         <ul>
           <li>JavaScript</li>
@@ -223,130 +149,191 @@
           <li>TypeScript (Angular)</li>
         </ul>
       </div>
-      <div class="card" data-aos="flip-up" data-aos-delay="400">
+      <div class="card" data-tilt>
         <h3>Data Analytics</h3>
         <ul>
           <li>Power BI, DAX, Power Query</li>
-          <li>Dashboard Design</li>
+          <li>Dashboard Design & Visualization</li>
           <li>Data Cleaning & Transformation</li>
-          <li>Geographic & Time Series Analysis</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2 data-aos="fade-up">Experience</h2>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="glow-line"></div>
     <div class="grid">
-      <div class="card" data-aos="zoom-in-right">
+      <div class="card" data-tilt>
         <h3>Eoxysit Solution LLP – Quality Analyst</h3>
         <p><em>Feb 2025 – Present</em></p>
         <ul>
-          <li>End-to-end manual testing for web & mobile apps.</li>
-          <li>Designed test cases and tracked bugs in JIRA & Trello.</li>
-          <li>Collaborated with developers for issue resolution.</li>
+          <li>End-to-end testing for web and mobile apps.</li>
+          <li>Designed test cases and tracked issues in JIRA & Trello.</li>
+          <li>Collaborated with developers for release stability.</li>
         </ul>
       </div>
-      <div class="card" data-aos="zoom-in-left">
+      <div class="card" data-tilt>
         <h3>JPR Systems Pvt Ltd – Web Developer</h3>
         <p><em>Mar 2024 – Jun 2024</em></p>
         <ul>
-          <li>Built Angular-based dynamic web apps.</li>
-          <li>Integrated REST APIs with reactive forms & validations.</li>
-          <li>Collaborated on UI/UX improvements.</li>
+          <li>Built Angular-based responsive web apps.</li>
+          <li>Integrated REST APIs and handled form validations.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2 data-aos="fade-up">Projects</h2>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="glow-line"></div>
     <div class="grid">
-      <div class="card" data-aos="fade-up">
-        <h3>DJPlayNow – Mobile App Testing</h3>
-        <p>Tools: Appium, JavaScript, JIRA</p>
-        <ul>
-          <li>Automated playback, login & search testing.</li>
-          <li>Reduced manual testing with automation scripts.</li>
-        </ul>
+      <div class="card" data-tilt>
+        <h3>DJPlayNow – App Testing</h3>
+        <ul><li>Automated playback, login & search.</li><li>Reduced manual test effort significantly.</li></ul>
       </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="200">
-        <h3>Kari Collective – E-commerce Testing</h3>
-        <p>Tools: Trello, Selenium (learning), JavaScript</p>
-        <ul>
-          <li>Manual testing for login, cart & checkout.</li>
-          <li>Cross-browser testing & bug reporting.</li>
-        </ul>
+      <div class="card" data-tilt>
+        <h3>Kari Collective – QA</h3>
+        <ul><li>Functional & regression testing for e-commerce flows.</li><li>Logged 40+ issues with reproduction steps.</li></ul>
       </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="400">
-        <h3>AI-Powered Book Writing App</h3>
-        <p>Tools: ClickUp | Manual & Cross-browser Testing</p>
-        <ul>
-          <li>Validated writing, editing & saving features.</li>
-          <li>Documented issues in ClickUp for developers.</li>
-        </ul>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="600">
+      <div class="card" data-tilt>
         <h3>Waitlist Dashboard – Power BI</h3>
-        <ul>
-          <li>Transformed raw data into interactive dashboards.</li>
-          <li>Built Y/Y comparison visuals with time intelligence.</li>
-        </ul>
+        <ul><li>Interactive dashboards with KPIs and Y/Y analysis.</li></ul>
       </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="800">
+      <div class="card" data-tilt>
         <h3>Uber Trip Analysis – Power BI</h3>
-        <ul>
-          <li>Analyzed trip patterns, peak times & driver performance.</li>
-          <li>Derived insights for data-driven decisions.</li>
-        </ul>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="1000">
-        <h3>Code Flow – Algorithm Visualization Tool</h3>
-        <ul>
-          <li>Visualized sorting algorithms with live metrics.</li>
-          <li>Optimized performance for better efficiency.</li>
-        </ul>
+        <ul><li>Time series and geo-analysis of trips and peaks.</li></ul>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2 data-aos="fade-up">Education</h2>
-    <div class="grid">
-      <div class="card" data-aos="zoom-in">
-        <h3>B.Tech in Computer Science</h3>
-        <p>JECRC University, Jaipur – 2024</p>
-      </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="200">
-        <h3>Diploma in IT</h3>
-        <p>Dayalbagh Educational Institute, Agra – 2021</p>
-      </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="400">
-        <h3>High School</h3>
-        <p>SRG Memorial Sr. Sec School, Agra – 2017</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 data-aos="fade-up">Contact Me</h2>
-    <div class="grid">
-      <div class="card" data-aos="flip-up">
-        <p>📍 Uttar Pradesh</p>
-        <p>📧 priyanshig836@gmail.com</p>
-        <p>📱 +91 9068786795</p>
-      </div>
-    </div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="glow-line"></div>
+    <form id="contact-form" class="contact-form" autocomplete="off" aria-label="Contact form">
+      <div class="field"><input type="text" id="name" placeholder="Your Name" required></div>
+      <div class="field"><input type="email" id="email" placeholder="Your Email" required></div>
+      <div class="field"><textarea id="message" rows="5" placeholder="Your Message" required></textarea></div>
+      <button type="submit" class="send">Send Message 🚀</button>
+    </form>
   </section>
 
   <footer>
     <p>© 2025 Priyanshi Gautam | Data Analytics & Testing Enthusiast</p>
   </footer>
+</div>
 
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1200, once: true });
-  </script>
+<div id="toast" class="toast" role="status" aria-live="polite">Message sent ✅</div>
+
+<script>
+/* -------------------------
+  tsParticles background
+   ------------------------- */
+if (window.tsParticles) {
+  tsParticles.load("tsparticles", {
+    fpsLimit: 60,
+    particles: {
+      number: { value: 90, density: { enable: true, area: 800 } },
+      color: { value: ["#00e1ff","#ff6ec7","#7b61ff"] },
+      shape: { type: "circle" },
+      opacity: { value: 0.12, random: { enable: true, minimumValue: 0.03 } },
+      size: { value: { min: 1, max: 6 } },
+      move: { enable: true, speed: 0.6, direction: "bottom-right", outModes: { default: "out" } },
+      links: { enable: true, distance: 140, color: "#ffffff", opacity: 0.04, width: 1 }
+    },
+    detectRetina: true
+  });
+}
+
+/* -------------------------
+   Preloader safe hide
+   ------------------------- */
+function hidePreloader() {
+  const p = document.getElementById('preloader');
+  if(!p) return;
+  try {
+    gsap.to(p, { autoAlpha: 0, duration: 0.6, ease: "power2.out" });
+  } catch(e){ p.style.opacity = 0; }
+  setTimeout(()=>{ p.style.display='none'; gsap.to('#pageWrap',{autoAlpha:1,y:0,duration:0.7,ease:"power3.out"}) }, 800);
+}
+window.addEventListener('load', hidePreloader);
+setTimeout(hidePreloader, 3000); // fallback
+
+/* -------------------------
+   Typing name (guaranteed visible)
+   ------------------------- */
+const typedEl = document.getElementById('typedName');
+const NAME = "PRIYANSHI GAUTAM";
+typedEl.textContent = "";
+let tIdx=0;
+(function type(){
+  if(tIdx < NAME.length){ typedEl.textContent += NAME[tIdx++]; setTimeout(type, 45); }
+  else { typedEl.style.borderRight = '0px solid transparent'; }
+})();
+
+/* -------------------------
+   GSAP entrance + scroll
+   ------------------------- */
+gsap.registerPlugin(ScrollTrigger);
+gsap.from(".avatar",{y:18,autoAlpha:0,duration:0.9,ease:"power3.out"});
+gsap.from("#typedName",{y:6,autoAlpha:0,duration:0.9,delay:0.12});
+gsap.utils.toArray('.card').forEach((c,i)=>{
+  gsap.from(c,{scrollTrigger:{trigger:c,start:"top 88%"},y:22,autoAlpha:0,duration:0.85,delay:i*0.06,ease:"power3.out"});
+});
+
+/* -------------------------
+   VanillaTilt for interactivity
+   ------------------------- */
+try{
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), { max:12, speed:450, glare:true, "max-glare":0.14, scale:1.02 });
+}catch(e){}
+
+/* -------------------------
+   Download CV -> placeholder
+   ------------------------- */
+document.getElementById('downloadCV').addEventListener('click', ()=> {
+  alert("Replace this with your CV file link. Example: window.location.href = 'Priyanshi_CV.pdf';");
+});
+
+/* -------------------------
+   EmailJS contact form
+   Replace placeholders: EMAILJS_USER_ID, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID
+   ------------------------- */
+(function(){ try{ emailjs.init("EMAILJS_USER_ID"); }catch(e){console.warn("EmailJS not initialized");} })();
+
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if(!name||!email||!message){ alert("Please fill all fields."); return; }
+
+  const data = { from_name: name, from_email: email, message: message };
+
+  // default: try to use your real EmailJS credentials here
+  // emailjs.send('EMAILJS_SERVICE_ID','EMAILJS_TEMPLATE_ID', data)
+  //   .then(()=> { showToast("Message sent — thank you!"); form.reset(); })
+  //   .catch(()=> { showToast("Failed to send — try again."); });
+
+  // If EmailJS not set up, show demo toast
+  showToast("Demo mode — configure EmailJS keys to send emails.");
+  form.reset();
+});
+
+/* -------------------------
+   Toast
+   ------------------------- */
+function showToast(txt){
+  const t = document.getElementById('toast');
+  t.textContent = txt;
+  t.style.display = 'block';
+  gsap.fromTo(t,{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.45});
+  setTimeout(()=> gsap.to(t,{y:30,autoAlpha:0,duration:.45, onComplete:()=> t.style.display='none'}),3000);
+}
+</script>
 </body>
 </html>
