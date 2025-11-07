@@ -1,261 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshi Gautam | Portfolio</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Priyanshi Gautam | Portfolio — Premium Animated</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.6.1/tsparticles.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.3/vanilla-tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<style>
+  :root{
+    --bg-1:#020317;
+    --bg-2:#070a20;
+    --accent-cyan:#00e1ff;
+    --accent-pink:#ff6ec7;
+    --accent-mid:#7b61ff;
+    --glass: rgba(255,255,255,0.04);
+    --muted:#bfcbe0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:'Outfit',system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:#eaf2ff;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  a{color:var(--accent-cyan);text-decoration:none}
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+  /* PRELOADER */
+  #preloader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,3,10,0.85), rgba(5,6,15,0.8));z-index:9999;backdrop-filter: blur(6px)}
+  .pulse{
+    width:140px;height:140px;border-radius:20px;background:linear-gradient(135deg,var(--accent-pink),var(--accent-cyan));
+    display:flex;align-items:center;justify-content:center;color:#031024;font-family:'Orbitron';font-weight:700;box-shadow:0 12px 60px rgba(0,0,0,0.5),0 0 40px rgba(0,225,255,0.12);
+    animation:beat 1.6s ease-in-out infinite;
+  }
+  @keyframes beat{0%{transform:scale(.96)}50%{transform:scale(1.06)}100%{transform:scale(.96)}}
 
-    body {
-      font-family: 'Urbanist', sans-serif;
-      color: #fff;
-      background: radial-gradient(circle at 20% 30%, #020024, #090979, #00d4ff);
-      overflow-x: hidden;
-      position: relative;
-    }
+  /* PARTICLES container */
+  #tsparticles{position:fixed;inset:0;z-index:-2}
 
-    /* Moving Gradient Overlay */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(120deg, rgba(0,255,255,0.15), rgba(255,0,255,0.15), rgba(255,255,255,0.05));
-      mix-blend-mode: overlay;
-      animation: gradientMove 10s infinite alternate ease-in-out;
-      z-index: -1;
-    }
+  /* PAGE CONTAINER */
+  .wrap{max-width:1150px;margin:0 auto;padding:30px 20px;opacity:1;transition:opacity .45s ease}
 
-    @keyframes gradientMove {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50px); }
-    }
+  /* HEADER */
+  header{display:flex;flex-direction:column;align-items:center;padding:80px 12px 40px;gap:12px;text-align:center}
+  .avatar{
+    width:220px;height:220px;border-radius:999px;border:4px solid rgba(255,255,255,0.06);
+    overflow:hidden;box-shadow:0 10px 50px rgba(123,97,255,0.12),0 0 60px rgba(0,225,255,0.08);
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .name{
+    font-family:'Orbitron',sans-serif;font-size:3rem;color:var(--accent-cyan);text-shadow:0 0 20px rgba(0,225,255,0.16);letter-spacing:1px;margin-top:6px;overflow:visible;
+  }
+  .role{color:var(--muted);margin-top:8px;font-size:1.05rem}
+  .contact-line{color:var(--muted);margin-top:8px;font-size:0.95rem}
+  .hero-links{margin-top:14px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .btn{
+    padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);color:#fff;font-weight:700;cursor:pointer;transition:all .28s}
+  }
+  .btn-primary{background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#051022;border:none;box-shadow:0 10px 30px rgba(0,225,255,0.12)}
 
-    /* HEADER */
-    header {
-      text-align: center;
-      padding: 120px 20px 70px;
-      position: relative;
-    }
+  /* SECTIONS */
+  section{padding:70px 0}
+  h2{font-family:'Orbitron';font-size:2.4rem;text-align:center;color:var(--accent-mid);text-shadow:0 0 18px rgba(123,97,255,0.18);margin-bottom:28px}
+  .glow-line{height:4px;width:100px;margin:10px auto;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));border-radius:6px;box-shadow:0 0 20px rgba(0,225,255,0.12)}
 
-    header img {
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
-      border: 3px solid #00fff7;
-      object-fit: cover;
-      box-shadow: 0 0 40px #00fff7, 0 0 80px rgba(0,255,247,0.5);
-      animation: float 4s ease-in-out infinite;
-    }
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
+  /* CARD */
+  .card{
+    position:relative;padding:22px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(8px);transition:transform .38s, box-shadow .38s;
+    overflow:hidden;
+  }
+  .card::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg, transparent, rgba(255,255,255,0.02), transparent);transform:translateX(-120%);transition:transform .9s}
+  .card:hover::after{transform:translateX(120%)}
+  .card:hover{transform:translateY(-10px);box-shadow:0 18px 60px rgba(0,0,0,0.6)}
 
-    .typing-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 3.4rem;
-      color: #00f5ff;
-      letter-spacing: 2px;
-      text-shadow: 0 0 25px #00f5ff, 0 0 60px #0088ff;
-      margin-top: 25px;
-      border-right: 3px solid #00f5ff;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 3.5s steps(22, end) forwards, blink 0.8s infinite;
-    }
+  .card h3{font-family:'Orbitron';color:var(--accent-pink);margin-bottom:10px;font-size:1.25rem}
+  .card ul{list-style:none;color:var(--muted);line-height:1.7;margin-left:0;padding-left:0}
 
-    @keyframes typing { from { width: 0; } to { width: 22ch; } }
-    @keyframes blink { 50% { border-color: transparent; } }
+  /* CONTACT FORM */
+  .contact-form{max-width:720px;margin:0 auto;padding:28px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(8px)}
+  .field{margin-bottom:12px}
+  input,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#eaf2ff;outline:none;font-size:15px}
+  input:focus,textarea:focus{box-shadow:0 0 10px rgba(0,225,255,0.12);border-color:var(--accent-cyan)}
+  .send{background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));border:none;padding:12px;border-radius:10px;font-weight:800;color:#031020;cursor:pointer;width:100%}
+  .send:active{transform:translateY(2px)}
 
-    header p {
-      color: #cfdfff;
-      margin-top: 12px;
-      font-size: 1.1rem;
-    }
+  /* TOAST */
+  .toast{position:fixed;right:20px;bottom:20px;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-pink));color:#021226;box-shadow:0 8px 40px rgba(0,0,0,0.45);display:none;z-index:9999}
 
-    header a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 28px;
-      color: #fff;
-      border: 2px solid #00fff7;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.4s ease;
-      background: transparent;
-    }
+  /* FOOTER */
+  footer{padding:28px;text-align:center;color:#a7b6d8;border-top:1px solid rgba(255,255,255,0.03)}
 
-    header a:hover {
-      background: linear-gradient(90deg, #00fff7, #00b3ff);
-      box-shadow: 0 0 25px #00fff7;
-      color: #000;
-      transform: scale(1.05);
-    }
-
-    /* SECTION */
-    section {
-      padding: 100px 8%;
-      position: relative;
-      z-index: 1;
-    }
-
-    section h2 {
-      text-align: center;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 2.6rem;
-      color: #ffcc70;
-      text-shadow: 0 0 30px rgba(255,204,112,0.8);
-      margin-bottom: 60px;
-      position: relative;
-    }
-
-    section h2::after {
-      content: "";
-      display: block;
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, #ffcc70, transparent);
-      margin: 15px auto 0;
-      border-radius: 2px;
-    }
-
-    /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 35px;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(15px);
-      transition: all 0.5s ease;
-      box-shadow: 0 0 25px rgba(0,255,255,0.08);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(130deg, transparent, rgba(0,255,255,0.25), transparent);
-      transform: translateX(-100%);
-      transition: 1s;
-    }
-
-    .card:hover::before {
-      transform: translateX(100%);
-    }
-
-    .card:hover {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 0 40px rgba(0,255,255,0.4);
-    }
-
-    .card h3 {
-      color: #00fff7;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      text-shadow: 0 0 10px #00f5ff;
-    }
-
-    .card ul {
-      list-style: none;
-      color: #d8d8d8;
-      line-height: 1.8;
-    }
-
-    /* CONTACT FORM */
-    form {
-      max-width: 600px;
-      margin: auto;
-      background: rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 45px;
-      box-shadow: 0 0 40px rgba(0,255,255,0.2);
-      backdrop-filter: blur(12px);
-    }
-
-    form input, form textarea {
-      width: 100%;
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(0,255,255,0.4);
-      color: #fff;
-      border-radius: 10px;
-      padding: 14px 15px;
-      margin-bottom: 18px;
-      outline: none;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-    }
-
-    form input:focus, form textarea:focus {
-      border-color: #00fff7;
-      box-shadow: 0 0 15px #00fff7;
-    }
-
-    form button {
-      background: linear-gradient(90deg, #00f5ff, #00b3ff);
-      border: none;
-      color: #000;
-      padding: 14px 0;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      width: 100%;
-    }
-
-    form button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00fff7;
-    }
-
-    footer {
-      text-align: center;
-      padding: 50px 10px;
-      background: #010010;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: #aaa;
-      font-size: 0.9rem;
-      letter-spacing: 0.6px;
-    }
-  </style>
+  /* Responsive tweaks */
+  @media (max-width:900px){
+    .hero{padding:36px 12px}
+    .name{font-size:2.2rem}
+    header img{width:180px;height:180px}
+  }
+</style>
 </head>
-
 <body>
+
+<!-- Preloader -->
+<div id="preloader" role="alert" aria-busy="true">
+  <div class="pulse">PRIYANSHI</div>
+</div>
+
+<!-- Particles -->
+<div id="tsparticles"></div>
+
+<div class="wrap" id="pageWrap" style="opacity:0;transform:translateY(8px)">
+  <!-- HEADER -->
   <header>
-    <img src="profile.jpeg" alt="Priyanshi Gautam">
-    <h1 class="typing-name">PRIYANSHI GAUTAM</h1>
-    <p>Quality Analyst | Data Analytics Enthusiast</p>
-    <p>📍 Uttar Pradesh | 📧 priyanshig836@gmail.com | 📱 +91 9068786795</p>
-    <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">🔗 LinkedIn</a>
+    <div class="avatar"><img src="profile.jpeg" alt="Priyanshi Gautam"></div>
+    <div class="name" id="typedName" aria-live="polite" aria-atomic="true"></div>
+    <div class="role">Quality Analyst | Data Analytics Enthusiast</div>
+    <div class="contact-line">📍 Uttar Pradesh &nbsp;•&nbsp; 📧 priyanshig836@gmail.com &nbsp;•&nbsp; 📱 +91 9068786795</div>
+    <div class="hero-links">
+      <button class="btn btn-primary" id="downloadCV">Download CV</button>
+      <a class="btn" href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </header>
 
-  <section>
-    <h2 data-aos="fade-up">Skills</h2>
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="glow-line"></div>
     <div class="grid">
-      <div class="card" data-aos="zoom-in">
+      <div class="card" data-tilt>
         <h3>Testing & QA</h3>
         <ul>
           <li>Manual Testing</li>
@@ -264,7 +141,7 @@
           <li>API & Cross-browser Testing</li>
         </ul>
       </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="150">
+      <div class="card" data-tilt>
         <h3>Programming</h3>
         <ul>
           <li>JavaScript</li>
@@ -272,7 +149,7 @@
           <li>TypeScript (Angular)</li>
         </ul>
       </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="300">
+      <div class="card" data-tilt>
         <h3>Data Analytics</h3>
         <ul>
           <li>Power BI, DAX, Power Query</li>
@@ -283,69 +160,180 @@
     </div>
   </section>
 
-  <section>
-    <h2 data-aos="fade-up">Experience</h2>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="glow-line"></div>
     <div class="grid">
-      <div class="card" data-aos="fade-right">
+      <div class="card" data-tilt>
         <h3>Eoxysit Solution LLP – Quality Analyst</h3>
         <p><em>Feb 2025 – Present</em></p>
         <ul>
           <li>End-to-end testing for web and mobile apps.</li>
-          <li>Managed bug tracking in JIRA & Trello.</li>
-          <li>Worked closely with developers for resolutions.</li>
+          <li>Designed test cases and tracked issues in JIRA & Trello.</li>
+          <li>Collaborated with developers for release stability.</li>
         </ul>
       </div>
-      <div class="card" data-aos="fade-left">
+      <div class="card" data-tilt>
         <h3>JPR Systems Pvt Ltd – Web Developer</h3>
         <p><em>Mar 2024 – Jun 2024</em></p>
         <ul>
-          <li>Developed Angular-based web applications.</li>
-          <li>Integrated APIs and optimized UI/UX.</li>
+          <li>Built Angular-based responsive web apps.</li>
+          <li>Integrated REST APIs and handled form validations.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2 data-aos="fade-up">Projects</h2>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="glow-line"></div>
     <div class="grid">
-      <div class="card" data-aos="zoom-in"><h3>DJPlayNow – App Testing</h3><ul><li>Automated playback, login & search.</li><li>Reduced manual testing by 40%.</li></ul></div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="150"><h3>Kari Collective – QA</h3><ul><li>Performed UI & regression testing.</li><li>Logged 40+ issues on Trello.</li></ul></div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="300"><h3>Waitlist Dashboard – Power BI</h3><ul><li>Interactive dashboards with KPIs.</li></ul></div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="450"><h3>Uber Trip Analysis</h3><ul><li>Analyzed trip trends & metrics.</li></ul></div>
+      <div class="card" data-tilt>
+        <h3>DJPlayNow – App Testing</h3>
+        <ul><li>Automated playback, login & search.</li><li>Reduced manual test effort significantly.</li></ul>
+      </div>
+      <div class="card" data-tilt>
+        <h3>Kari Collective – QA</h3>
+        <ul><li>Functional & regression testing for e-commerce flows.</li><li>Logged 40+ issues with reproduction steps.</li></ul>
+      </div>
+      <div class="card" data-tilt>
+        <h3>Waitlist Dashboard – Power BI</h3>
+        <ul><li>Interactive dashboards with KPIs and Y/Y analysis.</li></ul>
+      </div>
+      <div class="card" data-tilt>
+        <h3>Uber Trip Analysis – Power BI</h3>
+        <ul><li>Time series and geo-analysis of trips and peaks.</li></ul>
+      </div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
-    <h2 data-aos="fade-up">Contact Me</h2>
-    <form id="contact-form" data-aos="zoom-in">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message 🚀</button>
+    <h2>Contact Me</h2>
+    <div class="glow-line"></div>
+    <form id="contact-form" class="contact-form" autocomplete="off" aria-label="Contact form">
+      <div class="field"><input type="text" id="name" placeholder="Your Name" required></div>
+      <div class="field"><input type="email" id="email" placeholder="Your Email" required></div>
+      <div class="field"><textarea id="message" rows="5" placeholder="Your Message" required></textarea></div>
+      <button type="submit" class="send">Send Message 🚀</button>
     </form>
   </section>
 
   <footer>
     <p>© 2025 Priyanshi Gautam | Data Analytics & Testing Enthusiast</p>
   </footer>
+</div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init({ duration: 1200, once: true });</script>
+<div id="toast" class="toast" role="status" aria-live="polite">Message sent ✅</div>
 
-  <script>
-    (function(){ emailjs.init("5bUKpnL53r4Npm3aR"); })();
-    document.getElementById("contact-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      emailjs.send("service_4uwqhsl", "template_nypl0pp", {
-        from_name: name.value,
-        from_email: email.value,
-        message: message.value
-      }).then(() => {
-        alert("✅ Message Sent Successfully!");
-        e.target.reset();
-      }).catch(() => alert("❌ Failed to send message."));
-    });
-  </script>
+<script>
+/* -------------------------
+  tsParticles background
+   ------------------------- */
+if (window.tsParticles) {
+  tsParticles.load("tsparticles", {
+    fpsLimit: 60,
+    particles: {
+      number: { value: 90, density: { enable: true, area: 800 } },
+      color: { value: ["#00e1ff","#ff6ec7","#7b61ff"] },
+      shape: { type: "circle" },
+      opacity: { value: 0.12, random: { enable: true, minimumValue: 0.03 } },
+      size: { value: { min: 1, max: 6 } },
+      move: { enable: true, speed: 0.6, direction: "bottom-right", outModes: { default: "out" } },
+      links: { enable: true, distance: 140, color: "#ffffff", opacity: 0.04, width: 1 }
+    },
+    detectRetina: true
+  });
+}
+
+/* -------------------------
+   Preloader safe hide
+   ------------------------- */
+function hidePreloader() {
+  const p = document.getElementById('preloader');
+  if(!p) return;
+  try {
+    gsap.to(p, { autoAlpha: 0, duration: 0.6, ease: "power2.out" });
+  } catch(e){ p.style.opacity = 0; }
+  setTimeout(()=>{ p.style.display='none'; gsap.to('#pageWrap',{autoAlpha:1,y:0,duration:0.7,ease:"power3.out"}) }, 800);
+}
+window.addEventListener('load', hidePreloader);
+setTimeout(hidePreloader, 3000); // fallback
+
+/* -------------------------
+   Typing name (guaranteed visible)
+   ------------------------- */
+const typedEl = document.getElementById('typedName');
+const NAME = "PRIYANSHI GAUTAM";
+typedEl.textContent = "";
+let tIdx=0;
+(function type(){
+  if(tIdx < NAME.length){ typedEl.textContent += NAME[tIdx++]; setTimeout(type, 45); }
+  else { typedEl.style.borderRight = '0px solid transparent'; }
+})();
+
+/* -------------------------
+   GSAP entrance + scroll
+   ------------------------- */
+gsap.registerPlugin(ScrollTrigger);
+gsap.from(".avatar",{y:18,autoAlpha:0,duration:0.9,ease:"power3.out"});
+gsap.from("#typedName",{y:6,autoAlpha:0,duration:0.9,delay:0.12});
+gsap.utils.toArray('.card').forEach((c,i)=>{
+  gsap.from(c,{scrollTrigger:{trigger:c,start:"top 88%"},y:22,autoAlpha:0,duration:0.85,delay:i*0.06,ease:"power3.out"});
+});
+
+/* -------------------------
+   VanillaTilt for interactivity
+   ------------------------- */
+try{
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), { max:12, speed:450, glare:true, "max-glare":0.14, scale:1.02 });
+}catch(e){}
+
+/* -------------------------
+   Download CV -> placeholder
+   ------------------------- */
+document.getElementById('downloadCV').addEventListener('click', ()=> {
+  alert("Replace this with your CV file link. Example: window.location.href = 'Priyanshi_CV.pdf';");
+});
+
+/* -------------------------
+   EmailJS contact form
+   Replace placeholders: EMAILJS_USER_ID, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID
+   ------------------------- */
+(function(){ try{ emailjs.init("EMAILJS_USER_ID"); }catch(e){console.warn("EmailJS not initialized");} })();
+
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if(!name||!email||!message){ alert("Please fill all fields."); return; }
+
+  const data = { from_name: name, from_email: email, message: message };
+
+  // default: try to use your real EmailJS credentials here
+  // emailjs.send('EMAILJS_SERVICE_ID','EMAILJS_TEMPLATE_ID', data)
+  //   .then(()=> { showToast("Message sent — thank you!"); form.reset(); })
+  //   .catch(()=> { showToast("Failed to send — try again."); });
+
+  // If EmailJS not set up, show demo toast
+  showToast("Demo mode — configure EmailJS keys to send emails.");
+  form.reset();
+});
+
+/* -------------------------
+   Toast
+   ------------------------- */
+function showToast(txt){
+  const t = document.getElementById('toast');
+  t.textContent = txt;
+  t.style.display = 'block';
+  gsap.fromTo(t,{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.45});
+  setTimeout(()=> gsap.to(t,{y:30,autoAlpha:0,duration:.45, onComplete:()=> t.style.display='none'}),3000);
+}
+</script>
 </body>
 </html>
