@@ -1,790 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Priyanshi Gautam | Portfolio</title>
 
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- AOS -->
+  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    /* ======= NEW PROFESSIONAL COLOR THEME (NO BLUE) ======= */
     :root{
-      /* ====== NEW PROFESSIONAL THEME (NO BLUE) ====== */
-      --bg:#070a0f;                 /* deep charcoal */
-      --bg2:#0b1018;                /* slate charcoal */
-      --panel:#0f1622;              /* cards */
-      --panel-soft:rgba(15,22,34,0.8);
-      --border:rgba(255,255,255,0.08);
+      --bg-1:#06080d;         /* deep charcoal */
+      --bg-2:#0a0f16;         /* slate charcoal */
+      --bg-3:#05070b;
 
-      --text:#eef2f6;
-      --muted:#a3adbb;
+      --accent:#19c37d;      /* emerald */
+      --accent-2:#27df93;    /* lighter emerald */
+      --accent-gold:#d6b36a; /* soft gold */
 
-      --accent:#19c37d;             /* emerald */
-      --accent-soft:#27df93;        /* light emerald */
-      --accent-gold:#d6b36a;        /* soft gold */
+      --text:#f4f6f9;
+      --muted:#aeb6c2;
 
-      --radius:18px;
-      --shadow:0 16px 45px rgba(0,0,0,0.45);
-      --shadow-soft:0 10px 24px rgba(0,0,0,0.30);
+      --card-bg: rgba(255,255,255,0.045);
+      --card-border: rgba(255,255,255,0.10);
     }
 
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{
-      font-family:'Outfit', sans-serif;
-      color:var(--text);
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 30% 30%, var(--bg-1), var(--bg-2), var(--bg-3));
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ======= Background animation improved (same idea, more smooth) ======= */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
       background:
-        radial-gradient(1200px circle at 10% -10%, rgba(25,195,125,0.18), transparent 55%),
-        radial-gradient(1000px circle at 100% 0%, rgba(214,179,106,0.12), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      background-size: 200% 200%;
-      animation: bgMove 18s ease-in-out infinite;
-      overflow-x:hidden;
-      position:relative;
+        radial-gradient(circle at center, rgba(25,195,125,0.14), transparent 70%),
+        radial-gradient(circle at 82% 18%, rgba(214,179,106,0.10), transparent 72%),
+        radial-gradient(circle at 20% 80%, rgba(39,223,147,0.08), transparent 72%);
+      animation: moveBg 16s infinite alternate ease-in-out;
+      z-index: -1;
     }
 
-    @keyframes bgMove{
-      0%{ background-position:0% 50%; }
-      50%{ background-position:100% 50%; }
-      100%{ background-position:0% 50%; }
+    @keyframes moveBg {
+      0% { background-position: 0 0, 100% 0, 0 100%; transform: scale(1); }
+      100% { background-position: 100% 100%, 0 100%, 100% 0; transform: scale(1.05); }
     }
 
-    /* Floating glow orbs */
-    .orb{
-      position:fixed; inset:auto;
-      width:520px; height:520px; border-radius:50%;
-      filter: blur(90px);
-      opacity:.35; z-index:-1;
-      animation: orbFloat 20s ease-in-out infinite alternate;
-    }
-    .orb.o1{
-      top:-180px; left:-160px;
-      background: radial-gradient(circle, rgba(25,195,125,0.55), transparent 60%);
-    }
-    .orb.o2{
-      bottom:-220px; right:-160px;
-      background: radial-gradient(circle, rgba(214,179,106,0.55), transparent 60%);
-      animation-duration:24s;
-    }
-    @keyframes orbFloat{
-      0%{ transform:translate(0,0) scale(1); }
-      100%{ transform:translate(90px,-60px) scale(1.06); }
+    header {
+      text-align: center;
+      padding: 110px 20px 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    section{padding:90px 8%;}
-    .container{max-width:1100px;margin:0 auto;}
+    header img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 28px var(--accent), 0 0 60px rgba(25,195,125,0.35);
+      object-fit: cover;
+      animation: float 4s ease-in-out infinite, fadeIn 1.8s ease-out;
+      margin-bottom: 35px;
+    }
 
-    /* ===== NAVBAR ===== */
-    nav{
-      position:fixed; top:16px; left:50%; transform:translateX(-50%);
-      width:min(1120px, 92%);
-      background:rgba(7,10,15,0.7);
-      border:1px solid var(--border);
+    .typing-name {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.2rem;
+      color: var(--accent-2);
+      border-right: 3px solid var(--accent-2);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      text-align: center;
+      animation: typing 3s steps(18, end) forwards, blink 0.7s infinite, glow 3s infinite alternate;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 22ch; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px var(--accent-2), 0 0 20px var(--accent-2); }
+      to { text-shadow: 0 0 28px var(--accent-2), 0 0 55px rgba(25,195,125,0.8); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    header p {
+      color: var(--muted);
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+
+    /* Button color + shine animation */
+    header a {
+      color: var(--accent-2);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 20px;
+      border: 2px solid var(--accent-2);
+      padding: 10px 22px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      background: rgba(25,195,125,0.06);
+    }
+
+    header a::after{
+      content:"";
+      position:absolute;
+      inset:-120%;
+      background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.9) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: .8s;
+      opacity: .25;
+    }
+
+    header a:hover::after{
+      transform: translateX(100%);
+    }
+
+    header a:hover {
+      background: var(--accent-2);
+      color: #04150f;
+      box-shadow: 0 0 20px var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 90px 8%;
+    }
+
+    section h2 {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent-gold);
+      font-size: 2.4rem;
+      text-shadow: 0 0 16px rgba(214,179,106,0.6);
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    section h2::after {
+      content: "";
+      display: block;
+      width: 90px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+      margin: 12px auto 0;
+      border-radius: 2px;
+      animation: underlinePulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes underlinePulse{
+      0%,100%{ transform:scaleX(.85); opacity:.6; }
+      50%{ transform:scaleX(1.1); opacity:1; }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 35px;
+      border: 1px solid var(--card-border);
+      position: relative;
+      transition: all 0.5s ease;
+      overflow: hidden;
       backdrop-filter: blur(12px);
-      border-radius:999px;
-      padding:10px 16px;
-      display:flex; align-items:center; justify-content:space-between;
-      z-index:999;
-      box-shadow:var(--shadow-soft);
-      animation: navDrop .9s ease;
-    }
-    @keyframes navDrop{
-      from{opacity:0; transform:translate(-50%,-14px);}
-      to{opacity:1; transform:translate(-50%,0);}
-    }
-    nav .logo{
-      font-weight:700;
-      letter-spacing:.6px;
-      color:#e9f6ef;
-      display:flex; align-items:center; gap:8px;
-    }
-    nav .dot{
-      width:8px;height:8px;border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 8px var(--accent);
-      animation:pulse 1.6s infinite;
-    }
-    @keyframes pulse{
-      0%,100%{transform:scale(1);opacity:.7}
-      50%{transform:scale(1.35);opacity:1}
-    }
-    nav ul{display:flex;gap:14px;list-style:none;}
-    nav a{
-      color:var(--muted); text-decoration:none; font-weight:600;
-      padding:8px 12px; border-radius:999px; transition:.3s;
-      font-size:.95rem;
-    }
-    nav a:hover{
-      color:var(--text);
-      background:rgba(25,195,125,0.10);
-    }
-    nav a.active{
-      color:#05120b;
-      background:linear-gradient(90deg,var(--accent),var(--accent-soft));
-      box-shadow:0 8px 18px rgba(25,195,125,0.35);
     }
 
-    /* ===== HERO ===== */
-    header{
-      min-height:100vh;
-      display:grid; place-items:center;
-      padding:140px 8% 80px;
-    }
-    .hero{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:40px;
-      align-items:center;
-    }
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr; text-align:center;}
+    /* Card shimmer color changed + smoother */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, transparent, rgba(25,195,125,0.18), transparent);
+      transform: translateX(-120%);
+      transition: 1s;
     }
 
-    .hero-card{
-      background:var(--panel-soft);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:36px;
-      box-shadow:var(--shadow);
-      position:relative; overflow:hidden;
-      animation: heroIn 1.2s ease;
-    }
-    .hero-card::after{
-      content:"";
-      position:absolute; inset:-120%;
-      background: radial-gradient(circle, rgba(255,255,255,0.9), transparent 60%);
-      transform:translateX(-65%);
-      opacity:0; transition:.8s;
-    }
-    .hero-card:hover::after{ transform:translateX(65%); opacity:.12; }
-
-    @keyframes heroIn{
-      from{opacity:0; transform:translateY(20px);}
-      to{opacity:1; transform:translateY(0);}
+    .card:hover::before {
+      transform: translateX(120%);
     }
 
-    .hero h1{
-      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-      font-weight:800; line-height:1.15;
-      margin-bottom:10px;
-    }
-    .hero h1 span{
-      color:var(--accent-soft);
-      text-shadow:0 0 18px rgba(25,195,125,.35);
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 34px rgba(25,195,125,0.28);
+      border-color: rgba(25,195,125,0.5);
     }
 
-    .hero .role{
-      color:var(--muted);
-      font-size:1.1rem;
-      margin-bottom:12px;
-      letter-spacing:.3px;
-    }
-    .hero .meta{
-      color:#cdd6e0;
-      font-size:1rem;
-      margin-bottom:20px;
+    .card h3 {
+      color: var(--accent-2);
+      font-size: 1.4rem;
+      margin-bottom: 15px;
     }
 
-    .hero-actions{display:flex; gap:12px; flex-wrap:wrap;}
-    @media(max-width:900px){.hero-actions{justify-content:center;}}
-
-    .btn{
-      position:relative; overflow:hidden;
-      display:inline-flex; align-items:center; gap:8px;
-      padding:11px 18px;
-      border-radius:999px;
-      text-decoration:none; font-weight:800; transition:.3s;
-      border:1px solid transparent;
-      letter-spacing:.2px;
-    }
-    .btn.primary{
-      background:linear-gradient(90deg, var(--accent), var(--accent-soft));
-      color:#04160f;
-      box-shadow:0 12px 22px rgba(25,195,125,0.40);
-    }
-    .btn.ghost{
-      color:var(--text);
-      border-color:var(--border);
-      background:rgba(255,255,255,0.02);
-    }
-    .btn:hover{transform:translateY(-2px);}
-    .btn.primary::before{
-      content:""; position:absolute; inset:-50%;
-      background:linear-gradient(120deg, transparent 40%, rgba(255,255,255,.8) 50%, transparent 60%);
-      transform:translateX(-100%);
-      transition:.8s;
-      opacity:.3;
-    }
-    .btn.primary:hover::before{ transform:translateX(100%); }
-
-    /* profile image (unchanged) */
-    .profile-wrap{display:flex; justify-content:center;}
-    .profile{
-      width:270px;height:270px;border-radius:50%;
-      border:4px solid rgba(255,255,255,0.06);
-      box-shadow:0 0 0 10px rgba(25,195,125,0.10), 0 24px 60px rgba(0,0,0,0.55);
-      object-fit:cover;
-      animation: floatSoft 5s ease-in-out infinite;
-      background:#070a0f;
-    }
-    @keyframes floatSoft{
-      0%,100%{transform:translateY(0);}
-      50%{transform:translateY(-14px);}
+    .card ul {
+      list-style: none;
+      color: #d6dde7;
+      line-height: 1.8;
     }
 
-    /* ===== SECTION HEADINGS ===== */
-    h2{
-      font-size: clamp(1.7rem, 3vw, 2.2rem);
-      font-weight:800;
-      margin-bottom:42px;
-      position:relative;
-      display:inline-block;
-      letter-spacing:.5px;
-      color:#f4f7fb;
-    }
-    h2::after{
-      content:"";
-      position:absolute; left:0; bottom:-10px;
-      width:100%; height:3px;
-      background:linear-gradient(90deg, var(--accent-gold), transparent);
-      border-radius:999px;
-      animation: lineGlow 2.6s ease-in-out infinite;
-    }
-    @keyframes lineGlow{
-      0%,100%{transform:scaleX(.8); opacity:.5;}
-      50%{transform:scaleX(1); opacity:1;}
-    }
-
-    /* ===== ACHIEVEMENT STATS ===== */
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:16px;
-      margin-top:18px;
-    }
-    .stat{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:18px;
-      text-align:center;
-      box-shadow:var(--shadow-soft);
-      transform:translateY(0);
-      transition:.35s;
-    }
-    .stat:hover{transform:translateY(-6px);}
-    .stat .num{
-      font-size:2rem; font-weight:900;
-      color:var(--accent-soft);
-    }
-    .stat .label{color:var(--muted); margin-top:4px;}
-
-    /* ===== CARDS / GRIDS ===== */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(290px,1fr));
-      gap:20px;
-    }
-    .card{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:26px;
-      box-shadow:var(--shadow-soft);
-      transition:.35s ease;
-      position:relative;
-      overflow:hidden;
-      transform-style:preserve-3d;
-    }
-
-    /* glow-follow */
-    .card::before{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(550px circle at var(--mx,50%) var(--my,50%),
-                rgba(25,195,125,0.16), transparent 60%);
-      opacity:0; transition:.35s;
-    }
-    .card:hover::before{opacity:1;}
-    .card:hover{
-      transform:translateY(-8px) rotateX(2deg) rotateY(-2deg) scale(1.02);
-      border-color:rgba(25,195,125,0.5);
-      box-shadow:0 18px 50px rgba(0,0,0,0.55);
-    }
-
-    .card h3{color:#e9f6ef; font-size:1.25rem; margin-bottom:8px;}
-    .card p{color:var(--muted); margin-bottom:8px; font-size:.98rem;}
-    .card ul{list-style:none; padding-left:0; line-height:1.8; color:#e4e9f0;}
     .card ul li::before{
-      content:"▸";
-      color:var(--accent-gold);
-      margin-right:8px; font-weight:900;
+      content:"▹";
+      color: var(--accent-gold);
+      margin-right: 8px;
+      font-weight: 700;
     }
 
-    /* ===== SKILL BARS ===== */
-    .skill{
-      margin-top:10px;
-    }
-    .skill .row{
-      display:flex; justify-content:space-between;
-      margin-bottom:6px; color:#dfe6ee; font-weight:600;
-    }
-    .bar{
-      width:100%; height:10px; border-radius:999px;
-      background:#0b1018; border:1px solid var(--border);
-      overflow:hidden;
-    }
-    .bar > span{
-      display:block; height:100%; width:0;
-      background:linear-gradient(90deg,var(--accent),var(--accent-soft));
-      border-radius:999px;
-      transition:width 1.4s ease;
-      box-shadow:0 0 10px rgba(25,195,125,0.6);
+    /* Contact Form */
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(255,255,255,0.05);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 25px rgba(25,195,125,0.12);
     }
 
-    /* Summary panel */
-    .summary{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:28px;
-      line-height:1.9;
-      color:#e4e9f0;
-      box-shadow:var(--shadow-soft);
-    }
-    .summary b{color:#f5f8fb;}
-
-    /* ===== CONTACT ===== */
-    form{
-      background:var(--panel);
-      border:1px solid var(--border);
-      padding:30px;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow-soft);
-      max-width:650px;
-      margin:0 auto;
-    }
-    input,textarea{
-      width:100%; background:#0b1018;
-      border:1px solid var(--border);
-      color:var(--text);
-      border-radius:12px;
-      padding:12px 14px;
-      margin-bottom:14px;
-      outline:none; transition:.25s;
-      font-size:1rem;
-    }
-    input:focus,textarea:focus{
-      border-color:rgba(25,195,125,0.85);
-      box-shadow:0 0 0 3px rgba(25,195,125,0.18);
-    }
-    button{
-      width:100%;
-      border:none; cursor:pointer;
-      background:linear-gradient(90deg, var(--accent), var(--accent-soft));
-      color:#04160f; font-weight:900;
-      padding:12px; border-radius:999px;
-      transition:.3s; font-size:1rem;
-      box-shadow:0 12px 22px rgba(25,195,125,0.35);
-    }
-    button:hover{transform:translateY(-2px);}
-
-    footer{
-      text-align:center;
-      padding:30px 10px;
-      color:var(--muted);
-      border-top:1px solid var(--border);
-      background:#070a0f;
-      font-size:.9rem;
+    form input, form textarea {
+      width: 100%;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(25,195,125,0.35);
+      color: #fff;
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      outline: none;
+      transition: all 0.3s ease;
     }
 
-    /* scroll to top */
-    .to-top{
-      position:fixed; right:18px; bottom:18px;
-      width:44px; height:44px; border-radius:50%;
-      display:grid; place-items:center;
-      text-decoration:none; font-weight:900;
-      background:rgba(25,195,125,0.10);
-      border:1px solid var(--border);
-      color:#e9f6ef;
-      opacity:0; transform:translateY(16px);
-      transition:.3s; z-index:999;
+    form input:focus, form textarea:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 10px var(--accent-2);
     }
-    .to-top.show{opacity:1; transform:translateY(0);}
+
+    form button {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #04150f;
+      border: none;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 50px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      width: 100%;
+    }
+
+    form button:hover {
+      box-shadow: 0 0 22px var(--accent-2);
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 10px;
+      background: #05070b;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #9aa3ad;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
-
 <body>
-  <div class="orb o1"></div>
-  <div class="orb o2"></div>
 
-  <!-- NAV -->
-  <nav>
-    <div class="logo"><div class="dot"></div> Priyanshi Gautam</div>
-    <ul>
-      <li><a href="#summary">Summary</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#exp">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#edu">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <header id="home">
-    <div class="container hero">
-      <div class="hero-card" data-aos="fade-up">
-        <h1>Hi, I’m <span>Priyanshi Gautam</span></h1>
-        <p class="role">Quality Analyst (Manual Testing) | Data & Analytics Enthusiast</p>
-        <p class="meta">📍 Uttar Pradesh, India &nbsp; | &nbsp; 📧 priyanshig836@gmail.com &nbsp; | &nbsp; 📱 +91 9068786795</p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">LinkedIn</a>
-          <a class="btn ghost" href="#contact">Contact Me</a>
-        </div>
-
-        <!-- Animated Stats -->
-        <div class="stats" data-aos="fade-up" data-aos-delay="150">
-          <div class="stat">
-            <div class="num" data-count="300">0</div>
-            <div class="label">Test Cases Executed</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="180">0</div>
-            <div class="label">Defects Identified</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="10">0</div>
-            <div class="label">Dashboards / Modules</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="profile-wrap" data-aos="zoom-in">
-        <img class="profile" src="profile.jpeg" alt="Priyanshi Gautam">
-      </div>
-    </div>
+  <!-- HEADER -->
+  <header>
+    <img src="profile.jpeg" alt="Priyanshi Gautam">
+    <h1 class="typing-name">PRIYANSHI GAUTAM</h1>
+    <p>Quality Analyst (Manual Testing) | Data Analytics Enthusiast</p>
+    <p>📍 Uttar Pradesh, India | 📧 priyanshig836@gmail.com | 📱 +91 9068786795</p>
+    <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">🔗 LinkedIn</a>
   </header>
 
-  <!-- SUMMARY -->
-  <section id="summary">
-    <div class="container">
-      <h2 data-aos="fade-up">Summary</h2>
-      <div class="summary" data-aos="fade-up">
-        Motivated and detail-oriented <b>B.Tech Computer Science graduate</b> with hands-on experience in
-        <b>manual testing, web development, and data analytics</b>.
-        Successfully executed <b>300+ test cases</b>, identified <b>180+ defects</b>,
-        and built <b>10+ dashboards/modules</b> using Power BI and Angular.
-        Skilled in <b>Python, SQL/MySQL, Power BI, Angular, SDLC</b> and defect management tools.
-        Eager to contribute to high-impact projects in <b>Testing Services & Data Analytics</b>.
-      </div>
-    </div>
-  </section>
-
   <!-- SKILLS -->
-  <section id="skills">
-    <div class="container">
-      <h2 data-aos="fade-up">Technical Skills</h2>
-      <div class="grid">
+  <section>
+    <h2 data-aos="fade-up">Skills</h2>
+    <div class="grid">
+      <div class="card" data-aos="zoom-in">
+        <h3>Testing & QA</h3>
+        <ul>
+          <li>Manual Testing (End-to-End)</li>
+          <li>Test Case Design (Functional, Regression, Smoke)</li>
+          <li>Automation Basics (Appium, Selenium)</li>
+          <li>Bug Tracking (JIRA, Trello, ClickUp)</li>
+          <li>API Testing & Cross-browser Testing (Basics)</li>
+          <li>SDLC & UAT Support</li>
+        </ul>
+      </div>
 
-        <div class="card" data-aos="zoom-in">
-          <h3>Testing & QA</h3>
-          <ul>
-            <li>Manual Testing (End-to-End)</li>
-            <li>Test Case Design (Functional, Regression, Smoke)</li>
-            <li>Defect Tracking: JIRA, Trello, ClickUp</li>
-            <li>API Testing Basics</li>
-            <li>Appium & Selenium (Basics)</li>
-            <li>SDLC & UAT Support</li>
-          </ul>
+      <div class="card" data-aos="zoom-in" data-aos-delay="150">
+        <h3>Programming</h3>
+        <ul>
+          <li>JavaScript</li>
+          <li>Angular + TypeScript</li>
+          <li>HTML5, CSS3</li>
+          <li>Python (Basics)</li>
+        </ul>
+      </div>
 
-          <div class="skill">
-            <div class="row"><span>Manual Testing</span><span>95%</span></div>
-            <div class="bar"><span data-skill="95"></span></div>
-          </div>
-          <div class="skill">
-            <div class="row"><span>Bug Reporting</span><span>90%</span></div>
-            <div class="bar"><span data-skill="90"></span></div>
-          </div>
-        </div>
-
-        <div class="card" data-aos="zoom-in" data-aos-delay="100">
-          <h3>Programming & Web</h3>
-          <ul>
-            <li>JavaScript</li>
-            <li>Angular + TypeScript</li>
-            <li>HTML5, CSS3</li>
-            <li>Python (Basics)</li>
-          </ul>
-
-          <div class="skill">
-            <div class="row"><span>Angular</span><span>80%</span></div>
-            <div class="bar"><span data-skill="80"></span></div>
-          </div>
-          <div class="skill">
-            <div class="row"><span>JavaScript</span><span>85%</span></div>
-            <div class="bar"><span data-skill="85"></span></div>
-          </div>
-        </div>
-
-        <div class="card" data-aos="zoom-in" data-aos-delay="200">
-          <h3>Data Analytics</h3>
-          <ul>
-            <li>Power BI, DAX, Power Query</li>
-            <li>Dashboard Design & Visualization</li>
-            <li>Data Cleaning & Transformation</li>
-            <li>MySQL / SQL</li>
-            <li>Time Series & Geo Analysis</li>
-          </ul>
-
-          <div class="skill">
-            <div class="row"><span>Power BI</span><span>88%</span></div>
-            <div class="bar"><span data-skill="88"></span></div>
-          </div>
-          <div class="skill">
-            <div class="row"><span>SQL</span><span>75%</span></div>
-            <div class="bar"><span data-skill="75"></span></div>
-          </div>
-        </div>
-
-        <div class="card" data-aos="zoom-in" data-aos-delay="300">
-          <h3>Tools</h3>
-          <ul>
-            <li>Git & GitHub</li>
-            <li>VS Code</li>
-            <li>Agile Collaboration</li>
-            <li>Documentation & Reporting</li>
-          </ul>
-        </div>
-
+      <div class="card" data-aos="zoom-in" data-aos-delay="300">
+        <h3>Data Analytics</h3>
+        <ul>
+          <li>Power BI, DAX, Power Query</li>
+          <li>Dashboard Design & Data Visualization</li>
+          <li>Data Cleaning & Transformation</li>
+          <li>MySQL / SQL</li>
+          <li>Time Series & Geo Analysis</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <!-- EXPERIENCE -->
-  <section id="exp">
-    <div class="container">
-      <h2 data-aos="fade-up">Professional Experience</h2>
-      <div class="grid">
+  <section>
+    <h2 data-aos="fade-up">Experience</h2>
+    <div class="grid">
+      <div class="card" data-aos="fade-right">
+        <h3>Eoxysit Solution LLP – Quality Analyst (Manual Testing)</h3>
+        <p><em>Feb 2025 – Present</em></p>
+        <ul>
+          <li>Executed 300+ manual test cases across functional, regression & smoke testing.</li>
+          <li>Identified and logged 180+ defects with clear reproduction steps using JIRA & Trello.</li>
+          <li>Collaborated with development teams to resolve issues and ensure stable releases.</li>
+          <li>Supported UAT cycles and prepared QA reports/documentation.</li>
+          <li>Helped reduce production issues by early defect detection.</li>
+        </ul>
+      </div>
 
-        <div class="card" data-aos="fade-right">
-          <h3>Eoxysit Solution LLP – Quality Analyst (Manual Testing)</h3>
-          <p><em>Feb 2025 – Present | India</em></p>
-          <ul>
-            <li>Performed manual testing for 6+ web and mobile apps, ensuring stable releases.</li>
-            <li>Designed and executed 150+ test cases for functional, regression & smoke testing.</li>
-            <li>Logged and tracked 120+ defects with clear reproduction steps using JIRA/Trello/ClickUp.</li>
-            <li>Reduced production issues by 30% through early defect discovery and dev collaboration.</li>
-            <li>Supported 3 UAT cycles with evidence and sign-off documentation.</li>
-          </ul>
-        </div>
-
-        <div class="card" data-aos="fade-left">
-          <h3>JPR Systems Pvt. Ltd. – Web Developer (Angular)</h3>
-          <p><em>Mar 2024 – Jun 2024 | India</em></p>
-          <ul>
-            <li>Built 10+ responsive UI modules using Angular + TypeScript.</li>
-            <li>Integrated REST APIs and reactive forms, improving validation accuracy.</li>
-            <li>Created reusable components reducing development time by 25%.</li>
-            <li>Worked with design/backend teams to improve UX and engagement.</li>
-          </ul>
-        </div>
-
+      <div class="card" data-aos="fade-left">
+        <h3>JPR Systems Pvt Ltd – Web Developer (Angular)</h3>
+        <p><em>Mar 2024 – Jun 2024</em></p>
+        <ul>
+          <li>Developed 10+ Angular-based responsive modules using TypeScript.</li>
+          <li>Integrated REST APIs and reactive forms with strong validation logic.</li>
+          <li>Created reusable components improving development efficiency.</li>
+          <li>Optimized UI/UX with cross-team collaboration.</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <h2 data-aos="fade-up">Projects</h2>
-      <div class="grid">
-
-        <div class="card" data-aos="zoom-in">
-          <h3>DJPlayNow – Mobile App Testing</h3>
-          <ul>
-            <li>Functional & regression testing using Appium.</li>
-            <li>Test tracking and bug lifecycle in JIRA.</li>
-          </ul>
-        </div>
-
-        <div class="card" data-aos="zoom-in" data-aos-delay="100">
-          <h3>Kari Collective – E-commerce Website Testing</h3>
-          <ul>
-            <li>Manual testing for login, cart, and checkout flows.</li>
-            <li>Cross-browser testing + bug logging via Trello.</li>
-          </ul>
-        </div>
-
-        <div class="card" data-aos="zoom-in" data-aos-delay="200">
-          <h3>Waitlist Dashboard – Power BI</h3>
-          <ul>
-            <li>Cleaned data using Power Query.</li>
-            <li>Created KPIs and insights using DAX measures.</li>
-          </ul>
-        </div>
-
-        <div class="card" data-aos="zoom-in" data-aos-delay="300">
-          <h3>Uber Trip Analysis – Power BI</h3>
-          <ul>
-            <li>Trip trend analysis via time-series visuals.</li>
-            <li>Geo-based mapping dashboards.</li>
-          </ul>
-        </div>
-
-        <div class="card" data-aos="zoom-in" data-aos-delay="400">
-          <h3>Code Flow – Algorithm Visualization Tool</h3>
-          <ul>
-            <li>Sorting algorithm visualizer built with JavaScript.</li>
-            <li>Animated DSA learning tool for clarity & practice.</li>
-          </ul>
-        </div>
-
+  <section>
+    <h2 data-aos="fade-up">Projects</h2>
+    <div class="grid">
+      <div class="card" data-aos="zoom-in">
+        <h3>DJPlayNow – Mobile App Testing</h3>
+        <ul>
+          <li>Automated playback, login & search testing using Appium.</li>
+          <li>Reduced manual effort through reusable scripts.</li>
+        </ul>
       </div>
-    </div>
-  </section>
 
-  <!-- EDUCATION -->
-  <section id="edu">
-    <div class="container">
-      <h2 data-aos="fade-up">Education & Certifications</h2>
-      <div class="grid">
+      <div class="card" data-aos="zoom-in" data-aos-delay="150">
+        <h3>Kari Collective – E-commerce Testing</h3>
+        <ul>
+          <li>Performed UI and regression testing for core flows.</li>
+          <li>Logged 40+ detailed bugs using Trello.</li>
+        </ul>
+      </div>
 
-        <div class="card" data-aos="fade-right">
-          <h3>JECRC University</h3>
-          <p><em>B.Tech Computer Science (2021 – 2024)</em></p>
-          <p>Jaipur, Rajasthan</p>
-        </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="300">
+        <h3>Waitlist Dashboard – Power BI</h3>
+        <ul>
+          <li>Transformed raw data into interactive dashboards.</li>
+          <li>Created KPIs and YoY insights using DAX.</li>
+        </ul>
+      </div>
 
-        <div class="card" data-aos="fade-up">
-          <h3>Dayalbagh Educational Institute</h3>
-          <p><em>Diploma in IT (2018 – 2021)</em></p>
-          <p>Agra, Uttar Pradesh</p>
-        </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="450">
+        <h3>Uber Trip Analysis – Power BI</h3>
+        <ul>
+          <li>Analyzed trip trends and performance metrics.</li>
+          <li>Built geo-based insights visuals.</li>
+        </ul>
+      </div>
 
-        <div class="card" data-aos="fade-left">
-          <h3>Certifications</h3>
-          <ul>
-            <li>MySQL – Udemy</li>
-            <li>JavaScript – Udemy</li>
-            <li>IDEATHON – JECRC Incubation Centre</li>
-          </ul>
-        </div>
-
+      <div class="card" data-aos="zoom-in" data-aos-delay="600">
+        <h3>Code Flow – Algorithm Visualization Tool</h3>
+        <ul>
+          <li>Developed a JavaScript sorting visualizer with animations.</li>
+          <li>Improved DSA understanding through interactive learning.</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
-    <div class="container">
-      <h2 data-aos="fade-up">Contact Me</h2>
-      <form id="contact-form" data-aos="zoom-in">
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="email" id="email" placeholder="Your Email" required>
-        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message 🚀</button>
-      </form>
-    </div>
+    <h2 data-aos="fade-up">Contact Me</h2>
+    <form id="contact-form" data-aos="zoom-in">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message 🚀</button>
+    </form>
   </section>
 
   <footer>
     <p>© 2025 Priyanshi Gautam | QA & Data Analytics Portfolio</p>
   </footer>
 
-  <a href="#home" class="to-top" id="toTop">↑</a>
-
   <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 1200, once: true, offset: 120 });
-
-    // Scroll-to-top
-    const toTop = document.getElementById("toTop");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 500) toTop.classList.add("show");
-      else toTop.classList.remove("show");
+    AOS.init({
+      duration: 1300,
+      once: true,
+      easing: "ease-out-cubic"
     });
+  </script>
 
-    // Navbar active link highlight
-    const sections = document.querySelectorAll("section, header");
-    const navLinks = document.querySelectorAll("nav a");
-    window.addEventListener("scroll", ()=>{
-      let current = "home";
-      sections.forEach(sec=>{
-        const top = window.scrollY;
-        const offset = sec.offsetTop - 140;
-        if(top >= offset) current = sec.id;
-      });
-      navLinks.forEach(a=>{
-        a.classList.remove("active");
-        if(a.getAttribute("href") === `#${current}`) a.classList.add("active");
-      });
-    });
-
-    // Card glow follows mouse
-    document.querySelectorAll(".card").forEach(card=>{
-      card.addEventListener("mousemove", e=>{
-        const r = card.getBoundingClientRect();
-        card.style.setProperty("--mx", `${e.clientX - r.left}px`);
-        card.style.setProperty("--my", `${e.clientY - r.top}px`);
-      });
-    });
-
-    // Achievement counter animation
-    const counters = document.querySelectorAll(".num");
-    const counterObs = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = +el.dataset.count;
-        let n = 0;
-        const step = Math.max(1, Math.floor(target/70));
-        const tick = ()=>{
-          n += step;
-          if(n >= target){ el.textContent = target + "+"; return; }
-          el.textContent = n + "+";
-          requestAnimationFrame(tick);
-        };
-        tick();
-        counterObs.unobserve(el);
-      });
-    },{threshold:.6});
-    counters.forEach(c=>counterObs.observe(c));
-
-    // Skill bar animation
-    const bars = document.querySelectorAll(".bar span");
-    const barObs = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const span = entry.target;
-          span.style.width = span.dataset.skill + "%";
-          barObs.unobserve(span);
-        }
-      });
-    },{threshold:.6});
-    bars.forEach(b=>barObs.observe(b));
-
-    // EmailJS
+  <!-- EmailJS -->
+  <script>
     (function(){ emailjs.init("5bUKpnL53r4Npm3aR"); })();
-    document.getElementById("contact-form").addEventListener("submit", function(e){
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      emailjs.send("service_4uwqhsl","template_nypl0pp",{
+      emailjs.send("service_4uwqhsl", "template_nypl0pp", {
         from_name: document.getElementById("name").value,
         from_email: document.getElementById("email").value,
         message: document.getElementById("message").value
-      }).then(()=>{
+      }).then(() => {
         alert("✅ Message Sent Successfully!");
         e.target.reset();
-      },()=>{
+      }, () => {
         alert("❌ Failed to send message. Try again later.");
       });
     });
