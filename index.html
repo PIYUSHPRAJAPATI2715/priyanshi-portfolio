@@ -15,292 +15,412 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
   <style>
+    :root{
+      --bg1:#050814;
+      --bg2:#04071f;
+      --bg3:#020314;
+      --card:#0b1028cc;
+      --card-border:#1e2a5a;
+      --accent:#24e8ff;
+      --accent2:#00b7ff;
+      --accent3:#ffd166;
+      --text:#e6ecff;
+      --muted:#9fb0d0;
+      --success:#29f29f;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Outfit', sans-serif;
-      color: #fff;
-      background: radial-gradient(circle at 30% 30%, #0b001a, #060013, #01000c);
+      color: var(--text);
+      background:
+        radial-gradient(900px circle at 10% -10%, #0b1d4a 0%, transparent 55%),
+        radial-gradient(800px circle at 100% 0%, #0a2a3d 0%, transparent 55%),
+        radial-gradient(900px circle at 30% 90%, #140a3c 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2), var(--bg3));
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Particle Background Animation */
+    /* Animated aurora glow */
     body::before {
       content: "";
       position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(111,0,255,0.15), transparent 70%),
-                  radial-gradient(circle at 80% 20%, rgba(0,200,255,0.1), transparent 70%),
-                  radial-gradient(circle at 20% 80%, rgba(255,255,0,0.08), transparent 70%);
-      animation: moveBg 20s infinite alternate ease-in-out;
+      inset: -20%;
+      background:
+        radial-gradient(closest-side at 20% 30%, rgba(36,232,255,0.18), transparent 65%),
+        radial-gradient(closest-side at 70% 20%, rgba(0,183,255,0.12), transparent 70%),
+        radial-gradient(closest-side at 30% 80%, rgba(255,209,102,0.10), transparent 70%);
+      filter: blur(40px);
+      animation: aurora 18s ease-in-out infinite alternate;
       z-index: -1;
+      opacity:.9;
+    }
+    @keyframes aurora {
+      0% { transform: translate3d(-2%, -2%, 0) scale(1); }
+      100% { transform: translate3d(2%, 2%, 0) scale(1.08); }
     }
 
-    @keyframes moveBg {
-      0% { background-position: 0 0, 100% 0, 0 100%; }
-      100% { background-position: 100% 100%, 0 100%, 100% 0; }
+    /* Floating particles */
+    .particles{
+      position: fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-1;
+      opacity:.35;
+      background-image:
+       radial-gradient(2px 2px at 12% 20%, #fff, transparent),
+       radial-gradient(2px 2px at 35% 80%, #fff, transparent),
+       radial-gradient(2px 2px at 65% 30%, #fff, transparent),
+       radial-gradient(1px 1px at 78% 70%, #fff, transparent),
+       radial-gradient(1.5px 1.5px at 90% 40%, #fff, transparent);
+      animation: drift 22s linear infinite;
+    }
+    @keyframes drift{
+      0%{ transform: translateY(0); }
+      100%{ transform: translateY(-60px); }
     }
 
-  header {
-  text-align: center;
-  padding: 110px 20px 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-header img {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  border: 3px solid #00b3ff;
-  box-shadow: 0 0 30px #00b3ff, 0 0 60px rgba(0,179,255,0.5);
-  object-fit: cover;
-  animation: float 4s ease-in-out infinite, fadeIn 2s ease-out;
-  margin-bottom: 35px; /* ✅ Added space between photo and text */
-}
-
-.typing-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 15px; /* ✅ Space between name and tagline */
-}
-
-.typing-name {
-  display: inline-block;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3.2rem;
-  color: #00e1ff;
-  border-right: 3px solid #00e1ff;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  text-align: center;
-  animation: typing 3s steps(8, end) forwards, blink 0.7s infinite, glow 3s infinite alternate;
-}
-
-/* Keyframes */
-@keyframes typing {
-  from { width: 0; }
-  to { width: 22ch; }
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 10px #00e1ff, 0 0 20px #00e1ff; }
-  to { text-shadow: 0 0 30px #00e1ff, 0 0 60px #00ffff; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-
-    header p {
-      color: #b5b5b5;
-      margin-top: 15px;
-      font-size: 1.1rem;
+    /* Header */
+    header {
+      min-height: 100vh;
+      text-align: center;
+      padding: 120px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
     }
 
-    header a {
-      color: #00e1ff;
+    header img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 25px var(--accent2), 0 0 65px rgba(36,232,255,0.45);
+      object-fit: cover;
+      animation: float 4s ease-in-out infinite, fadeIn 1.8s ease-out;
+      margin-bottom: 10px;
+    }
+    @keyframes float { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-10px)} }
+    @keyframes fadeIn { from {opacity:0; transform:scale(.95)} to {opacity:1; transform:scale(1)} }
+
+    /* Typing name */
+    .typing-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.3rem);
+      color: var(--accent);
+      border-right: 3px solid var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      letter-spacing: 2px;
+      animation: typing 3s steps(18, end) forwards, blink 0.7s infinite, glow 3s infinite alternate;
+    }
+    @keyframes typing { from { width: 0; } to { width: 22ch; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px var(--accent); }
+      to { text-shadow: 0 0 30px var(--accent), 0 0 60px #00fff0; }
+    }
+
+    header .role {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-top: 10px;
+      letter-spacing:.5px;
+    }
+    header .meta {
+      color: #b7c4e6;
+      font-size: 1rem;
+      margin-top: 6px;
+    }
+
+    header .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 18px;
+      justify-content:center;
+    }
+    header a.btn {
+      color: var(--accent);
       text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-      margin-top: 20px;
-      border: 2px solid #00e1ff;
-      padding: 10px 22px;
-      border-radius: 50px;
-      transition: all 0.3s ease;
+      font-weight: 700;
+      border: 1.8px solid var(--accent);
+      padding: 11px 22px;
+      border-radius: 999px;
+      transition: all 0.35s ease;
+      background: rgba(36,232,255,0.06);
+      backdrop-filter: blur(8px);
+      position:relative;
+      overflow:hidden;
+    }
+    header a.btn::after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle, rgba(36,232,255,.5), transparent 60%);
+      transform: translateX(-60%);
+      transition:.6s;
+      opacity:.1;
+    }
+    header a.btn:hover::after{ transform: translateX(60%); opacity:.35; }
+    header a.btn:hover {
+      background: var(--accent);
+      color: #02051a;
+      box-shadow: 0 0 20px var(--accent);
+      transform: translateY(-2px);
     }
 
-    header a:hover {
-      background: #00e1ff;
-      color: #0b001a;
-      box-shadow: 0 0 20px #00e1ff;
-    }
-
-    section {
-      padding: 90px 8%;
-    }
-
+    /* Sections */
+    section { padding: 90px 8% 70px; position:relative; }
     section h2 {
       text-align: center;
       font-family: 'Orbitron', sans-serif;
-      color: #ffdd33;
-      font-size: 2.4rem;
-      text-shadow: 0 0 18px rgba(255,221,51,0.7);
-      margin-bottom: 60px;
+      color: var(--accent3);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      text-shadow: 0 0 18px rgba(255,209,102,0.6);
+      margin-bottom: 55px;
       position: relative;
     }
-
     section h2::after {
       content: "";
       display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, #ffdd33, transparent);
+      width: 92px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent3), transparent);
       margin: 12px auto 0;
       border-radius: 2px;
+      opacity:.9;
     }
 
+    /* Grid Card */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
+      gap: 26px;
     }
-
     .card {
-      background: rgba(255,255,255,0.04);
-      border-radius: 20px;
-      padding: 35px;
-      border: 1px solid rgba(255,255,255,0.08);
-      position: relative;
+      background: var(--card);
+      border-radius: 18px;
+      padding: 30px;
+      border: 1px solid var(--card-border);
       transition: all 0.5s ease;
+      position: relative;
       overflow: hidden;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
+      transform-style: preserve-3d;
     }
-
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(130deg, transparent, rgba(0,238,255,0.15), transparent);
-      transform: translateX(-100%);
-      transition: 0.8s;
+      background: linear-gradient(130deg, transparent, rgba(36,232,255,0.12), transparent);
+      transform: translateX(-120%);
+      transition: 0.9s;
     }
-
-    .card:hover::before {
-      transform: translateX(100%);
-    }
-
+    .card:hover::before { transform: translateX(120%); }
     .card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 0 30px rgba(0,238,255,0.3);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0,183,255,0.22);
+      border-color: rgba(36,232,255,0.7);
     }
-
     .card h3 {
-      color: #00e1ff;
-      font-size: 1.4rem;
-      margin-bottom: 15px;
+      color: var(--accent);
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+      letter-spacing:.4px;
     }
-
+    .card p { color: var(--muted); margin-bottom: 10px; }
     .card ul {
       list-style: none;
-      color: #ccc;
+      color: #dae3ff;
       line-height: 1.8;
+      padding-left: 0;
+    }
+    .card ul li::before{
+      content:"▹";
+      color: var(--accent2);
+      margin-right:8px;
+    }
+
+    /* Summary block */
+    .summary{
+      max-width: 1000px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(11,16,40,.9), rgba(7,10,28,.9));
+      border: 1px solid var(--card-border);
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 0 25px rgba(0,183,255,0.12);
+      text-align: center;
+    }
+    .summary p{
+      color:#d7e2ff;
+      font-size:1.05rem;
+      line-height:1.85;
+    }
+    .summary .highlight{
+      color:var(--accent);
+      font-weight:700;
     }
 
     /* Contact Form */
     form {
-      max-width: 600px;
+      max-width: 680px;
       margin: auto;
-      background: rgba(255,255,255,0.05);
+      background: rgba(8,12,32,0.85);
       padding: 40px;
-      border-radius: 20px;
+      border-radius: 18px;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 0 25px rgba(0,238,255,0.15);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 0 25px rgba(0,183,255,0.15);
     }
-
     form input, form textarea {
       width: 100%;
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(0,238,255,0.3);
+      background: rgba(3,5,16,0.8);
+      border: 1px solid rgba(36,232,255,0.35);
       color: #fff;
       border-radius: 10px;
       padding: 12px 15px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       outline: none;
       transition: all 0.3s ease;
-    }
-
-    form input:focus, form textarea:focus {
-      border-color: #00e1ff;
-      box-shadow: 0 0 10px #00e1ff;
-    }
-
-    form button {
-      background: linear-gradient(90deg, #00b3ff, #00ffcc);
-      color: #000;
-      border: none;
-      font-weight: 700;
       font-size: 1rem;
-      border-radius: 50px;
+    }
+    form input:focus, form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+    form button {
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      color: #02051a;
+      border: none;
+      font-weight: 800;
+      font-size: 1rem;
+      border-radius: 999px;
       padding: 12px;
       cursor: pointer;
-      transition: all 0.4s ease;
+      transition: all 0.35s ease;
       width: 100%;
+      letter-spacing:.4px;
     }
-
     form button:hover {
-      box-shadow: 0 0 20px #00e1ff;
-      transform: scale(1.05);
+      box-shadow: 0 0 18px var(--accent);
+      transform: translateY(-1px) scale(1.02);
     }
 
     footer {
       text-align: center;
-      padding: 40px 10px;
-      background: #050010;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: #aaa;
+      padding: 35px 10px;
+      background: #040518;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #9aa8c7;
       font-size: 0.9rem;
+      letter-spacing:.3px;
     }
+
+    /* Scroll to top */
+    .to-top{
+      position:fixed;
+      right:18px; bottom:18px;
+      width:46px; height:46px;
+      border-radius:50%;
+      display:grid; place-items:center;
+      background:rgba(36,232,255,.12);
+      border:1px solid rgba(36,232,255,.5);
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:900;
+      box-shadow:0 0 18px rgba(36,232,255,.25);
+      transform:translateY(20px);
+      opacity:0;
+      transition:.35s;
+    }
+    .to-top.show{ opacity:1; transform:translateY(0); }
   </style>
 </head>
+
 <body>
+  <div class="particles"></div>
 
   <!-- HEADER -->
-  <header>
+  <header id="home">
+    <!-- profile image not changed -->
     <img src="profile.jpeg" alt="Priyanshi Gautam">
     <h1 class="typing-name">PRIYANSHI GAUTAM</h1>
-    <p>Quality Analyst | Data Analytics Enthusiast</p>
-    <p>📍 Uttar Pradesh | 📧 priyanshig836@gmail.com | 📱 +91 9068786795</p>
-    <a href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">🔗 LinkedIn</a>
+    <p class="role">Quality Analyst (Manual Testing) | Data & Analytics Enthusiast</p>
+    <p class="meta">📍 Uttar Pradesh, India &nbsp; | &nbsp; 📧 priyanshig836@gmail.com &nbsp; | &nbsp; 📱 +91 9068786795</p>
+
+    <div class="cta-row">
+      <a class="btn" href="https://www.linkedin.com/in/priyanshi-gautam-2793681a5" target="_blank">🔗 LinkedIn</a>
+      <a class="btn" href="#contact">✉️ Contact Me</a>
+    </div>
   </header>
+
+  <!-- SUMMARY -->
+  <section>
+    <h2 data-aos="fade-up">Summary</h2>
+    <div class="summary" data-aos="zoom-in">
+      <p>
+        Motivated and detail-oriented <span class="highlight">B.Tech Computer Science graduate</span> with hands-on experience in
+        <span class="highlight">manual testing, web development, and data analytics</span>.
+        Successfully executed <span class="highlight">300+ test cases</span>, identified <span class="highlight">180+ defects</span>,
+        and built <span class="highlight">10+ dashboards/modules</span> using Power BI and Angular.
+        Skilled in <span class="highlight">Python, SQL/MySQL, Power BI, Angular, SDLC</span> and defect management tools.
+        Eager to contribute to high-impact projects in <span class="highlight">Testing Services & Data Analytics</span>.
+      </p>
+    </div>
+  </section>
 
   <!-- SKILLS -->
   <section>
-    <h2 data-aos="fade-up">Skills</h2>
+    <h2 data-aos="fade-up">Technical Skills</h2>
     <div class="grid">
       <div class="card" data-aos="zoom-in">
         <h3>Testing & QA</h3>
         <ul>
-          <li>Manual Testing</li>
-          <li>Automation (Appium, Selenium)</li>
-          <li>Bug Tracking (JIRA, Trello, ClickUp)</li>
-          <li>API & Cross-browser Testing</li>
+          <li>Manual Testing (End-to-End)</li>
+          <li>Test Case Design (Functional, Regression, Smoke)</li>
+          <li>Defect Tracking: JIRA, Trello, ClickUp</li>
+          <li>API Testing Basics</li>
+          <li>Appium & Selenium (Basics)</li>
+          <li>SDLC & UAT Support</li>
         </ul>
       </div>
+
       <div class="card" data-aos="zoom-in" data-aos-delay="150">
-        <h3>Programming</h3>
+        <h3>Programming & Web</h3>
         <ul>
           <li>JavaScript</li>
+          <li>Angular + TypeScript</li>
+          <li>HTML5, CSS3</li>
           <li>Python (Basics)</li>
-          <li>TypeScript (Angular)</li>
         </ul>
       </div>
+
       <div class="card" data-aos="zoom-in" data-aos-delay="300">
         <h3>Data Analytics</h3>
         <ul>
           <li>Power BI, DAX, Power Query</li>
-          <li>Dashboard Design & Data Visualization</li>
+          <li>Dashboard Design & Visualization</li>
           <li>Data Cleaning & Transformation</li>
+          <li>MySQL / SQL</li>
           <li>Time Series & Geo Analysis</li>
+        </ul>
+      </div>
+
+      <div class="card" data-aos="zoom-in" data-aos-delay="450">
+        <h3>Tools</h3>
+        <ul>
+          <li>Git & GitHub</li>
+          <li>Visual Studio Code</li>
+          <li>Agile Collaboration</li>
+          <li>Documentation & Reporting</li>
         </ul>
       </div>
     </div>
@@ -308,24 +428,28 @@ header img {
 
   <!-- EXPERIENCE -->
   <section>
-    <h2 data-aos="fade-up">Experience</h2>
+    <h2 data-aos="fade-up">Professional Experience</h2>
     <div class="grid">
       <div class="card" data-aos="fade-right">
-        <h3>Eoxysit Solution LLP – Quality Analyst</h3>
-        <p><em>Feb 2025 – Present</em></p>
+        <h3>Eoxysit Solution LLP – Quality Analyst (Manual Testing)</h3>
+        <p><em>Feb 2025 – Present | India</em></p>
         <ul>
-          <li>Conducted manual & automation testing for web and mobile apps.</li>
-          <li>Managed bug tracking via JIRA and Trello.</li>
-          <li>Collaborated with dev teams for resolution and QA audits.</li>
+          <li>Performed end-to-end manual testing for 6+ web and mobile apps, ensuring 95%+ defect-free releases.</li>
+          <li>Designed and executed 150+ test cases across functional, regression, and smoke testing.</li>
+          <li>Identified/logged/tracked 120+ defects with clear reproduction steps using JIRA, Trello & ClickUp.</li>
+          <li>Reduced production issues by 30% through early bug detection and close dev collaboration.</li>
+          <li>Supported 3 UAT cycles by preparing test evidence, reports, and sign-off documentation.</li>
         </ul>
       </div>
+
       <div class="card" data-aos="fade-left">
-        <h3>JPR Systems Pvt Ltd – Web Developer</h3>
-        <p><em>Mar 2024 – Jun 2024</em></p>
+        <h3>JPR Systems Pvt. Ltd. – Web Developer (Angular)</h3>
+        <p><em>Mar 2024 – Jun 2024 | India</em></p>
         <ul>
-          <li>Developed Angular-based responsive web applications.</li>
-          <li>Integrated REST APIs and optimized UX/UI.</li>
-          <li>Worked on component design and reactive forms.</li>
+          <li>Developed 10+ responsive UI modules using Angular + TypeScript for production apps.</li>
+          <li>Integrated 5+ REST APIs and reactive forms, improving validation accuracy by 40%.</li>
+          <li>Built reusable front-end components reducing development time by 25%.</li>
+          <li>Collaborated with backend/design teams to improve UI/UX and user engagement by 20%.</li>
         </ul>
       </div>
     </div>
@@ -338,29 +462,67 @@ header img {
       <div class="card" data-aos="zoom-in">
         <h3>DJPlayNow – Mobile App Testing</h3>
         <ul>
-          <li>Automated playback, login & search testing.</li>
-          <li>Reduced manual testing using Appium scripts.</li>
+          <li>Functional & regression testing using Appium.</li>
+          <li>Tracked defects and test cycles using JIRA.</li>
         </ul>
       </div>
+
       <div class="card" data-aos="zoom-in" data-aos-delay="150">
-        <h3>Kari Collective – E-commerce Testing</h3>
+        <h3>Kari Collective – E-commerce Website Testing</h3>
         <ul>
-          <li>Performed UI and regression testing.</li>
-          <li>Logged 40+ detailed bugs using Trello.</li>
+          <li>Manual testing for login, cart, and checkout flows.</li>
+          <li>Cross-browser validation and bug logging via Trello.</li>
         </ul>
       </div>
+
       <div class="card" data-aos="zoom-in" data-aos-delay="300">
         <h3>Waitlist Dashboard – Power BI</h3>
         <ul>
-          <li>Transformed data into interactive dashboards.</li>
-          <li>Created KPIs and Y/Y visual insights.</li>
+          <li>Data cleaning using Power Query.</li>
+          <li>Created KPIs and insights using DAX measures.</li>
         </ul>
       </div>
+
       <div class="card" data-aos="zoom-in" data-aos-delay="450">
         <h3>Uber Trip Analysis – Power BI</h3>
         <ul>
-          <li>Analyzed trends and performance metrics.</li>
-          <li>Built geo-based insights visuals.</li>
+          <li>Trip trend analysis via time-series visuals.</li>
+          <li>Geo-based performance insights and mapping dashboards.</li>
+        </ul>
+      </div>
+
+      <div class="card" data-aos="zoom-in" data-aos-delay="600">
+        <h3>Code Flow – Algorithm Visualization Tool</h3>
+        <ul>
+          <li>Developed sorting algorithm visualizer using JavaScript.</li>
+          <li>Improved understanding of core DSA concepts through animations.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CERTIFICATIONS -->
+  <section>
+    <h2 data-aos="fade-up">Education & Certifications</h2>
+    <div class="grid">
+      <div class="card" data-aos="fade-right">
+        <h3>JECRC University</h3>
+        <p><em>B.Tech Computer Science (2021 – 2024)</em></p>
+        <p>Jaipur, Rajasthan</p>
+      </div>
+
+      <div class="card" data-aos="fade-up">
+        <h3>Dayalbagh Educational Institute</h3>
+        <p><em>Diploma in Information Technology (2018 – 2021)</em></p>
+        <p>Agra, Uttar Pradesh</p>
+      </div>
+
+      <div class="card" data-aos="fade-left">
+        <h3>Certifications</h3>
+        <ul>
+          <li>MySQL – Udemy</li>
+          <li>JavaScript – Udemy</li>
+          <li>IDEATHON – JECRC Incubation Centre</li>
         </ul>
       </div>
     </div>
@@ -378,12 +540,24 @@ header img {
   </section>
 
   <footer>
-    <p>© 2025 Priyanshi Gautam | Data Analytics & Testing Enthusiast</p>
+    <p>© 2025 Priyanshi Gautam | QA & Data Analytics Portfolio</p>
   </footer>
+
+  <!-- Scroll Top -->
+  <a href="#home" class="to-top" id="toTop">↑</a>
 
   <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init({ duration: 1200, once: true });</script>
+  <script>
+    AOS.init({ duration: 1100, once: true, offset: 120 });
+
+    // show scroll-to-top button
+    const toTop = document.getElementById("toTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 500) toTop.classList.add("show");
+      else toTop.classList.remove("show");
+    });
+  </script>
 
   <!-- EmailJS -->
   <script>
